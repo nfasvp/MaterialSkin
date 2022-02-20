@@ -65,6 +65,45 @@
             }
         }
 
+
+        [Category(CategoryLabels.MaterialSkin),
+         DefaultValue("Body1"),
+         Description("Font to be used by the Display Text & List of Items")]
+        public MaterialSkinManager.fontType ItemMaterialFont
+        {
+            get
+            {
+                return _itemMaterialFont;
+            }
+            set
+            {
+                if (value != _itemMaterialFont)
+                {
+                    _itemMaterialFont = value;
+                    _itemFont = SkinManager.getFontByType(_itemMaterialFont);
+                    Invalidate();
+                }
+            }
+        }
+        private MaterialSkinManager.fontType _itemMaterialFont;
+
+        [Category(CategoryLabels.MaterialSkin),
+         Description("Sets the Font used by Item-text")]
+        public Font ItemFont
+        {
+            get
+            {
+                return _itemFont;
+            }
+        }
+        private Font _itemFont;
+
+
+        // disabling from designer the Font property
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public new Font Font { get; set; }
+
+
         private int _startIndex;
         public int StartIndex
         {
@@ -103,7 +142,11 @@
             UseTallSize = true;
             MaxDropDownItems = 4;
 
-            Font = SkinManager.getFontByType(MaterialSkinManager.fontType.Subtitle2);
+            // set Item-text default font
+            ItemMaterialFont = MaterialSkinManager.fontType.Body1;
+            // Font is not being used
+            //Font = SkinManager.getFontByType(MaterialSkinManager.fontType.Subtitle2);
+
             BackColor = SkinManager.BackgroundColor;
             ForeColor = SkinManager.TextHighEmphasisColor;
             DrawMode = DrawMode.OwnerDrawVariable;
@@ -243,10 +286,14 @@
 
             using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
             {
-                // Draw user text
+                // Draw item text
                 NativeText.DrawTransparentText(
                     Text,
-                    SkinManager.getLogFontByType(MaterialSkinManager.fontType.Subtitle1),
+
+                    // using new property "_itemFont"
+                    //SkinManager.getLogFontByType(MaterialSkinManager.fontType.Subtitle1),
+                    _itemFont,
+
                     Enabled ? SkinManager.TextHighEmphasisColor : SkinManager.TextDisabledOrHintColor,
                     textRect.Location,
                     textRect.Size,
@@ -317,7 +364,11 @@
             {
                 NativeText.DrawTransparentText(
                 Text,
-                SkinManager.getFontByType(MaterialSkinManager.fontType.Subtitle1),
+
+                // using new property "_itemFont"
+                //SkinManager.getFontByType(MaterialSkinManager.fontType.Subtitle1),
+                _itemFont,
+
                 SkinManager.TextHighEmphasisNoAlphaColor,
                 new Point(e.Bounds.Location.X + SkinManager.FORM_PADDING, e.Bounds.Location.Y),
                 new Size(e.Bounds.Size.Width - SkinManager.FORM_PADDING * 2, e.Bounds.Size.Height),
@@ -367,7 +418,9 @@
                 var itemsList = this.Items.Cast<object>().Select(item => item.ToString());
                 foreach (string s in itemsList)
                 {
-                    int newWidth = NativeText.MeasureLogString(s, SkinManager.getLogFontByType(MaterialSkinManager.fontType.Subtitle1)).Width + vertScrollBarWidth + padding;
+                    // using new property "_itemMaterialFont"
+                    int newWidth = NativeText.MeasureLogString(s, SkinManager.getLogFontByType(_itemMaterialFont)).Width + vertScrollBarWidth + padding;
+
                     if (w < newWidth) w = newWidth;
                 }
             }

@@ -7,6 +7,18 @@ This repo is a fork obtained from https://github.com/leocb/MaterialSkin.git
 
 
 
+build 2.3.1.5 [2022-02-20] 
+-------------------------
+  - Enhancements:
+    - MaterialComboBox - better support for font customization (Item text and hint text)
+      - user can change Item text font using properties pane, changes are rendered in design-mode as well as during runtime.
+        - previously the item text font was hardcoded to "Subtitle1"
+      - base property "Font" changed to "hidden". Avoids misleading the user since its value is not respected
+      - new property "ItemMaterialFont" - user can choose from a list of "material fonts".
+      - new property "ItemFont" - read-only property that shows in the "properties pane" the characteristics of the corresponding Font type defined by property "ItemMaterialFont", helping the user to understand the true meaning of the selected Material font
+
+
+
 build 2.3.1.4 [2022-02-20] 
 -------------------------
   - Enhancements:
@@ -23,7 +35,6 @@ build 2.3.1.4 [2022-02-20]
       - Reduced the number of "Redraws" (Pain events) while the MaterialDrawer control is being initialized by its container.
         - Previously, during MaterialDrawer's initialization, every property set done by the container that would impact drawer's UI would generate a redraw event (paint event).
         - Now, MaterialDrawer control checks if its container has finish the initialization and if not ignores the redraw. When container invokes control's "InitLayout" method, meaning "end of control's initialization phase, future propertities changes will invoke a redraw action.
-
 
 
 
