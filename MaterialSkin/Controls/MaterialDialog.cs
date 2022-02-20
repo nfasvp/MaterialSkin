@@ -31,16 +31,6 @@
         /// </summary>
         //public ObservableCollection<MaterialButton> Buttons { get; set; }
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
 
         /// <summary>
         /// Constructer Setting up the Layout
@@ -122,7 +112,7 @@
                 RectHeight + 9);
 
             Height = _header_Height + TEXT_TOP_PADDING + textRect.Height + TEXT_BOTTOM_PADDING + 52; //560;
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 6, 6));
+            Region = System.Drawing.Region.FromHrgn(NativeWin.CreateRoundRectRgn(0, 0, Width, Height, 6, 6));
 
             int _buttonWidth = ((TextRenderer.MeasureText(ValidationButtonText, SkinManager.getFontByType(MaterialSkinManager.fontType.Button))).Width + 32);
             Rectangle _validationbuttonBounds = new Rectangle((Width) - BUTTON_PADDING - _buttonWidth, Height - BUTTON_PADDING - BUTTON_HEIGHT, _buttonWidth, BUTTON_HEIGHT);
@@ -169,7 +159,7 @@
         {
         }
 
-       public MaterialDialog(Form ParentForm, string Title, string Text, string ValidationButtonText, bool ShowCancelButton, string CancelButtonText) : this(ParentForm, Title, Text, ValidationButtonText, ShowCancelButton, CancelButtonText, false)
+        public MaterialDialog(Form ParentForm, string Title, string Text, string ValidationButtonText, bool ShowCancelButton, string CancelButtonText) : this(ParentForm, Title, Text, ValidationButtonText, ShowCancelButton, CancelButtonText, false)
         {
         }
 
@@ -181,7 +171,7 @@
         {
             base.OnLoad(e);
 
-            Location = new Point(Convert.ToInt32(Owner.Location.X + (Owner.Width / 2) - (Width / 2)), Convert.ToInt32(Owner.Location.Y + (Owner.Height/2) - (Height / 2)));
+            Location = new Point(Convert.ToInt32(Owner.Location.X + (Owner.Width / 2) - (Width / 2)), Convert.ToInt32(Owner.Location.Y + (Owner.Height / 2) - (Height / 2)));
             _AnimationManager.StartNewAnimation(AnimationDirection.In);
         }
 
@@ -207,12 +197,12 @@
 
             e.Graphics.Clear(BackColor);
 
-            
+
             // Calc title Rect
             Rectangle titleRect = new Rectangle(
                 LEFT_RIGHT_PADDING,
                 0,
-                Width - (2 * LEFT_RIGHT_PADDING) ,
+                Width - (2 * LEFT_RIGHT_PADDING),
                 _header_Height);
 
             //Draw title
@@ -236,9 +226,9 @@
 
             Rectangle textRect = new Rectangle(
                 LEFT_RIGHT_PADDING,
-                _header_Height+17,
+                _header_Height + 17,
                 RectWidth,
-                RectHeight +19);
+                RectHeight + 19);
 
             //Draw  Text
             using (NativeTextRenderer NativeText = new NativeTextRenderer(g))

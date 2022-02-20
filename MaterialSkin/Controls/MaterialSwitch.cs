@@ -24,7 +24,7 @@
 
         private bool _ripple;
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         public bool Ripple
         {
             get { return _ripple; }
@@ -42,7 +42,7 @@
             }
         }
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         [Browsable(true), DefaultValue(false), EditorBrowsable(EditorBrowsableState.Always)]
         public bool ReadOnly { get; set; }
 
@@ -272,7 +272,7 @@
 
             if (DesignMode) return;
 
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
 
             GotFocus += (sender, AddingNewEventArgs) =>
             {
@@ -305,7 +305,7 @@
             MouseLeave += (sender, args) =>
             {
                 MouseLocation = new Point(-1, -1);
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 //if (Ripple && hovered)
                 //{
                 //    _hoverAM.StartNewAnimation(AnimationDirection.Out, new object[] { Checked });

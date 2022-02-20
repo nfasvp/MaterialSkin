@@ -49,7 +49,7 @@ namespace MaterialSkin.Controls
         //Material Skin properties
 
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true)]
         public string Hint
         {
             get { return baseTextBox.Hint; }
@@ -61,7 +61,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), DefaultValue(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true)]
         public bool UseAccent { get; set; }
 
 
@@ -98,25 +98,25 @@ namespace MaterialSkin.Controls
 
         public override string Text { get { return baseTextBox.Text; } set { baseTextBox.Text = value; } }
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         public HorizontalAlignment TextAlign { get { return baseTextBox.TextAlign; } set { baseTextBox.TextAlign = value; } }
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         public ScrollBars ScrollBars { get { return baseTextBox.ScrollBars; } set { baseTextBox.ScrollBars = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public CharacterCasing CharacterCasing { get { return baseTextBox.CharacterCasing; } set { baseTextBox.CharacterCasing = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool HideSelection { get { return baseTextBox.HideSelection; } set { baseTextBox.HideSelection = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public int MaxLength { get { return baseTextBox.MaxLength; } set { baseTextBox.MaxLength = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public char PasswordChar { get { return baseTextBox.PasswordChar; } set { baseTextBox.PasswordChar = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool ShortcutsEnabled
         {
             get
@@ -137,13 +137,13 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool UseSystemPasswordChar { get { return baseTextBox.UseSystemPasswordChar; } set { baseTextBox.UseSystemPasswordChar = value; } }
 
         public new object Tag { get { return baseTextBox.Tag; } set { baseTextBox.Tag = value; } }
 
         private bool _readonly;
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool ReadOnly
         {
             get { return _readonly; }
@@ -160,7 +160,7 @@ namespace MaterialSkin.Controls
 
         private bool _animateReadOnly;
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Browsable(true)]
         public bool AnimateReadOnly
         {
@@ -174,7 +174,7 @@ namespace MaterialSkin.Controls
 
         private bool _leaveOnEnterKey;
 
-        [Category("Material Skin"), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed. To add enter in text, the user must press CTRL+Enter")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed. To add enter in text, the user must press CTRL+Enter")]
         public bool LeaveOnEnterKey
         {
             get => _leaveOnEnterKey;
@@ -1135,7 +1135,7 @@ namespace MaterialSkin.Controls
             AllowScroll = true;
             // Material Properties
             UseAccent = true;
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
 
@@ -1249,10 +1249,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-
-        [DllImport("User32.dll", CharSet = CharSet.Auto, EntryPoint = "SendMessage")]
-        protected static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
-
         protected void OnMouseWheel(object sender, MouseEventArgs e)
         {
             if (AllowScroll)
@@ -1265,13 +1261,13 @@ namespace MaterialSkin.Controls
                 if (v < 0)
                 {
                     var ptrWparam = new IntPtr(SB_LINEDOWN);
-                    SendMessage(baseTextBox.Handle, WM_VSCROLL, ptrWparam, ptrLparam);
+                    NativeWin.SendMessage(baseTextBox.Handle, WM_VSCROLL, ptrWparam, ptrLparam);
                 }
                 //Up Movement
                 else if (v > 0)
                 {
                     var ptrWparam = new IntPtr(SB_LINEUP);
-                    SendMessage(baseTextBox.Handle, WM_VSCROLL, ptrWparam, ptrLparam);
+                    NativeWin.SendMessage(baseTextBox.Handle, WM_VSCROLL, ptrWparam, ptrLparam);
                 }
 
                 baseTextBox?.Focus();
@@ -1316,7 +1312,7 @@ namespace MaterialSkin.Controls
             else
             {
                 base.OnMouseLeave(e);
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 Invalidate();
             }
         }
@@ -1338,7 +1334,7 @@ namespace MaterialSkin.Controls
             base.OnCreateControl();
 
             // events
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
         }
 
         private void ContextMenuStripOnItemClickStart(object sender, ToolStripItemClickedEventArgs toolStripItemClickedEventArgs)

@@ -26,12 +26,12 @@
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
-        [Category("Material Skin"), DefaultValue(false)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false)]
         public bool Password { get; set; }
 
         private bool _UseTallSize;
 
-        [Category("Material Skin"), DefaultValue(true), Description("Using a larger size enables the hint to always be visible")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true), Description("Using a larger size enables the hint to always be visible")]
         public bool UseTallSize
         {
             get { return _UseTallSize; }
@@ -45,12 +45,12 @@
             }
         }
 
-        [Category("Material Skin"), DefaultValue(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true)]
         public bool UseAccent { get; set; }
 
         private string _hint = string.Empty;
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true)]
         public string Hint
         {
             get { return _hint; }
@@ -64,7 +64,7 @@
 
         private Image _leadingIcon;
 
-        [Category("Material Skin"), Browsable(true), Localizable(false)]
+        [Category(CategoryLabels.MaterialSkin), Browsable(true), Localizable(false)]
         /// <summary>
         /// Gets or sets the leading Icon
         /// </summary>
@@ -89,7 +89,7 @@
 
         private Image _trailingIcon;
 
-        [Category("Material Skin"), Browsable(true), Localizable(false)]
+        [Category(CategoryLabels.MaterialSkin), Browsable(true), Localizable(false)]
         /// <summary>
         /// Gets or sets the trailing Icon
         /// </summary>
@@ -160,8 +160,8 @@
 
         private bool hasHint;
         private bool _errorState = false;
-        private int _left_padding ;
-        private int _right_padding ;
+        private int _left_padding;
+        private int _right_padding;
         private Rectangle _leadingIconBounds;
         private Rectangle _trailingIconBounds;
         private Rectangle _textfieldBounds;
@@ -172,7 +172,7 @@
 
         private bool _animateReadOnly;
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Browsable(true)]
         public bool AnimateReadOnly
         {
@@ -186,7 +186,7 @@
 
         private bool _leaveOnEnterKey;
 
-        [Category("Material Skin"), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed.")]
         public bool LeaveOnEnterKey
         {
             get => _leaveOnEnterKey;
@@ -207,11 +207,11 @@
 
         #region "Events"
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Leading Icon is clicked")]
         public event EventHandler LeadingIconClick;
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Trailing Icon is clicked")]
         public event EventHandler TrailingIconClick;
 
@@ -257,9 +257,6 @@
 
         private const int EM_SETPASSWORDCHAR = 0x00cc;
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
@@ -268,7 +265,7 @@
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
-            if (Password) SendMessage(Handle, EM_SETPASSWORDCHAR, 'T', 0);
+            if (Password) NativeWin.SendMessage(Handle, EM_SETPASSWORDCHAR, 'T', 0);
 
             // Size and padding
             HEIGHT = UseTallSize ? 50 : 36;
@@ -277,7 +274,7 @@
             UpdateRects();
 
             // events
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
             LostFocus += (sender, args) => _animationManager.StartNewAnimation(AnimationDirection.Out);
             GotFocus += (sender, args) =>
             {
@@ -290,17 +287,17 @@
             };
             MouseLeave += (sender, args) =>
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 Invalidate();
             };
             HScroll += (sender, args) =>
             {
-                SendMessage(this.Handle, EM_GETSCROLLPOS, 0, ref scrollPos);
+                NativeWin.SendMessage(this.Handle, EM_GETSCROLLPOS, 0, ref scrollPos);
                 Invalidate();
             };
             KeyDown += (sender, args) =>
             {
-                SendMessage(this.Handle, EM_GETSCROLLPOS, 0, ref scrollPos);
+                NativeWin.SendMessage(this.Handle, EM_GETSCROLLPOS, 0, ref scrollPos);
             };
         }
 
@@ -308,8 +305,6 @@
         private const int EM_GETSCROLLPOS = WM_USER + 221;
         private const int WM_USER = 0x400;
 
-        [DllImport("user32.dll")]
-        private static extern IntPtr SendMessage(IntPtr hWnd, Int32 wMsg, Int32 wParam, ref Point lParam);
 
         public override Size GetPreferredSize(Size proposedSize)
         {
@@ -363,7 +358,7 @@
             if (_trailingIcon == null && _leadingIcon == null) return;
 
             // Calculate lightness and color
-            float l = (SkinManager.Theme == MaterialSkinManager.Themes.LIGHT ) ? 0f : 1f;
+            float l = (SkinManager.Theme == MaterialSkinManager.Themes.LIGHT) ? 0f : 1f;
 
             // Create matrices
             float[][] matrixGray = {
@@ -510,13 +505,13 @@
 
             if (RedefineTextField)
             {
-            var rect = new Rectangle(_left_padding, UseTallSize ? hasHint ?
-        (HINT_TEXT_SMALL_Y + HINT_TEXT_SMALL_SIZE) : // Has hint and it's tall
-        (int)(LINE_Y / 3.5) : // No hint and tall
-        Height / 5, // not tall
-        ClientSize.Width - _left_padding - _right_padding, LINE_Y);
-            RECT rc = new RECT(rect);
-            SendMessageRefRect(Handle, EM_SETRECT, 0, ref rc);
+                var rect = new Rectangle(_left_padding, UseTallSize ? hasHint ?
+            (HINT_TEXT_SMALL_Y + HINT_TEXT_SMALL_SIZE) : // Has hint and it's tall
+            (int)(LINE_Y / 3.5) : // No hint and tall
+            Height / 5, // not tall
+            ClientSize.Width - _left_padding - _right_padding, LINE_Y);
+                NativeWin.RECT rc = new NativeWin.RECT(rect);
+                NativeWin.SendMessageRefRect(Handle, NativeWin.EM_SETRECT, 0, ref rc);
             }
 
         }
@@ -558,7 +553,7 @@
             //Trailing Icon
             if (TrailingIcon != null)
             {
-                if(_errorState)
+                if (_errorState)
                     g.FillRectangle(iconsErrorBrushes["_trailingIcon"], _trailingIconBounds);
                 else
                     g.FillRectangle(iconsBrushes["_trailingIcon"], _trailingIconBounds);
@@ -829,43 +824,15 @@
             }
         }
 
-        // Cursor flickering fix
-        private const int WM_SETCURSOR = 0x0020;
-
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == WM_SETCURSOR)
+            // Cursor flickering fix
+            if (m.Msg == NativeWin.WM_SETCURSOR)
                 Cursor.Current = this.Cursor;
             else
                 base.WndProc(ref m);
         }
 
-        // Padding
-        private const int EM_SETRECT = 0xB3;
-
-        [DllImport(@"User32.dll", EntryPoint = @"SendMessage", CharSet = CharSet.Auto)]
-        private static extern int SendMessageRefRect(IntPtr hWnd, uint msg, int wParam, ref RECT rect);
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct RECT
-        {
-            public readonly int Left;
-            public readonly int Top;
-            public readonly int Right;
-            public readonly int Bottom;
-
-            private RECT(int left, int top, int right, int bottom)
-            {
-                Left = left;
-                Top = top;
-                Right = right;
-                Bottom = bottom;
-            }
-
-            public RECT(Rectangle r) : this(r.Left, r.Top, r.Right, r.Bottom)
-            {
-            }
-        }
     }
 
     [ToolboxItem(false)]

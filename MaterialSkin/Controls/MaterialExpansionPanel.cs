@@ -29,20 +29,20 @@ namespace MaterialSkin.Controls
         private const int _footerHeight = 68;
         private const int _footerButtonHeight = 36;
         private const int _minHeight = 200;
-        private int _headerHeight ;
+        private int _headerHeight;
 
-        private bool _collapse ;
+        private bool _collapse;
         private bool _useAccentColor;
         private int _expandHeight;
-									
-									  
+
+
         private string _titleHeader;
         private string _descriptionHeader;
         private string _validationButtonText;
         private string _cancelButtonText;
-										
-																 
-										  
+
+
+
         private bool _showValidationButtons;
         private bool _showCollapseExpand;
         private bool _drawShadows;
@@ -77,7 +77,7 @@ namespace MaterialSkin.Controls
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
-        [Category("Material Skin"), DefaultValue(false), DisplayName("Use Accent Color")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), DisplayName("Use Accent Color")]
         public bool UseAccentColor
         {
             get { return _useAccentColor; }
@@ -86,7 +86,7 @@ namespace MaterialSkin.Controls
 
         [DefaultValue(false)]
         [Description("Collapses the control when set to true")]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         public bool Collapse
         {
             get { return _collapse; }
@@ -99,7 +99,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue("Title")]
-        [Category("Material Skin"), DisplayName("Title")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Title")]
         [Description("Title to show in expansion panel's header")]
         public string Title
         {
@@ -112,7 +112,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue("Description")]
-        [Category("Material Skin"), DisplayName("Description")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Description")]
         [Description("Description to show in expansion panel's header")]
         public string Description
         {
@@ -125,7 +125,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue(true)]
-        [Category("Material Skin"), DisplayName("Draw Shadows")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Draw Shadows")]
         [Description("Draw Shadows around control")]
         public bool DrawShadows
         {
@@ -134,7 +134,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue(240)]
-        [Category("Material Skin"), DisplayName("Expand Height")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Expand Height")]
         [Description("Define control height when expanded")]
         public int ExpandHeight
         {
@@ -143,7 +143,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue(true)]
-        [Category("Material Skin"), DisplayName("Show collapse/expand")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Show collapse/expand")]
         [Description("Show collapse/expand indicator")]
         public bool ShowCollapseExpand
         {
@@ -152,7 +152,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue(true)]
-        [Category("Material Skin"), DisplayName("Show validation buttons")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Show validation buttons")]
         [Description("Show save/cancel button")]
         public bool ShowValidationButtons
         {
@@ -161,7 +161,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue("SAVE")]
-        [Category("Material Skin"), DisplayName("Validation button text")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Validation button text")]
         [Description("Set Validation button text")]
         public string ValidationButtonText
         {
@@ -170,7 +170,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue("CANCEL")]
-        [Category("Material Skin"), DisplayName("Cancel button text")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Cancel button text")]
         [Description("Set Cancel button text")]
         public string CancelButtonText
         {
@@ -179,7 +179,7 @@ namespace MaterialSkin.Controls
         }
 
         [DefaultValue(false)]
-        [Category("Material Skin"), DisplayName("Validation button enable")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Validation button enable")]
         [Description("Enable validation button")]
         public bool ValidationButtonEnable
         {
@@ -193,19 +193,19 @@ namespace MaterialSkin.Controls
 
         #region "Events"
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Save button is clicked")]
         public event EventHandler SaveClick;
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Cancel button is clicked")]
         public event EventHandler CancelClick;
 
-        [Category("Disposition")]
+        [Category(CategoryLabels.Disposition)]
         [Description("Fires when Panel Collapse")]
         public event EventHandler PanelCollapse;
 
-        [Category("Disposition")]
+        [Category(CategoryLabels.Disposition)]
         [Description("Fires when Panel Expand")]
         public event EventHandler PanelExpand;
 
@@ -231,9 +231,9 @@ namespace MaterialSkin.Controls
             ForeColor = SkinManager.TextHighEmphasisColor;
 
             Padding = new Padding(24, 64, 24, 16);
-            Margin = new Padding( 3, 16,  3, 16);
+            Margin = new Padding(3, 16, 3, 16);
             Size = new Size(480, ExpandHeight);
-            							 
+
             //CollapseOrExpand();
 
             _validationButton = new MaterialButton
@@ -254,18 +254,18 @@ namespace MaterialSkin.Controls
                 Text = "CANCEL"
             };
 
-            if (!Controls.Contains(_validationButton) )
+            if (!Controls.Contains(_validationButton))
             {
                 Controls.Add(_validationButton);
             }
-           if (!Controls.Contains(_cancelButton) )
+            if (!Controls.Contains(_cancelButton))
             {
                 Controls.Add(_cancelButton);
             }
 
             _validationButton.Click += _validationButton_Click;
             _cancelButton.Click += _cancelButton_Click;
-	    
+
             UpdateRects();
         }
 
@@ -383,7 +383,7 @@ namespace MaterialSkin.Controls
             UpdateRects();
 
             if (Parent != null)
-            { 
+            {
                 RemoveShadowPaintEvent(Parent, drawShadowOnParent);
                 AddShadowPaintEvent(Parent, drawShadowOnParent);
             }
@@ -435,7 +435,7 @@ namespace MaterialSkin.Controls
                     return;
             }
 
-             base.OnMouseDown(e);
+            base.OnMouseDown(e);
         }
 
         protected override void OnMouseLeave(EventArgs e)
@@ -484,7 +484,7 @@ namespace MaterialSkin.Controls
                     expansionPanelBorderRectF.X -= 0.5f;
                     expansionPanelBorderRectF.Y -= 0.5f;
                     GraphicsPath expansionPanelBoarderPath = DrawHelper.CreateRoundRect(expansionPanelBorderRectF, 2);
-																					   
+
                     g.FillPath(SkinManager.ExpansionPanelFocusBrush, expansionPanelBoarderPath);
                 }
                 else
@@ -517,13 +517,13 @@ namespace MaterialSkin.Controls
             }
 
             if (!String.IsNullOrEmpty(_descriptionHeader))
-	    {
+            {
                 //Draw description header text 
 
                 Rectangle headerDescriptionRect = new Rectangle(
                     headerRect.Right + _expansionPanelDefaultPadding,
                     (_headerHeight - _textHeaderHeight) / 2,
-                    _expandcollapseBounds.Left - (headerRect.Right + _expansionPanelDefaultPadding ) - _expansionPanelDefaultPadding,
+                    _expandcollapseBounds.Left - (headerRect.Right + _expansionPanelDefaultPadding) - _expansionPanelDefaultPadding,
                     _textHeaderHeight);
 
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
@@ -539,7 +539,7 @@ namespace MaterialSkin.Controls
                 }
             }
 
-            if (_showCollapseExpand==true)
+            if (_showCollapseExpand == true)
             {
                 using (var formButtonsPen = new Pen(_useAccentColor && Enabled ? SkinManager.ColorScheme.AccentColor : SkinManager.TextDisabledOrHintColor, 2))
                 {

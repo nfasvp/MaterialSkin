@@ -39,7 +39,7 @@ namespace MaterialSkin.Controls
         private MaterialScrollBar _scrollBar;
         private object _selectedValue;
 
-        private bool _updating=false;
+        private bool _updating = false;
         private int _itemHeight;
         private bool _showBorder;
         private Color _borderColor;
@@ -84,24 +84,24 @@ namespace MaterialSkin.Controls
 
         private bool useAccentColor;
 
-        [Category("Material Skin"), DefaultValue(false), DisplayName("Use Accent Color")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), DisplayName("Use Accent Color")]
         public bool UseAccentColor
         {
             get { return useAccentColor; }
-            set { useAccentColor = value; _scrollBar.UseAccentColor = value;  Invalidate(); }
+            set { useAccentColor = value; _scrollBar.UseAccentColor = value; Invalidate(); }
         }
 
         [TypeConverter(typeof(CollectionConverter))]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Editor(typeof(MaterialItemCollectionEditor), typeof(UITypeEditor))]
-        [Category("Material Skin"), Description("Gets the items of the ListBox.")]
+        [Category(CategoryLabels.MaterialSkin), Description("Gets the items of the ListBox.")]
         public ObservableCollection<MaterialListBoxItem> Items => _items;
 
         [Browsable(false)]
-        [Category("Material Skin"), Description("Gets a collection containing the currently selected items in the ListBox.")]
+        [Category(CategoryLabels.MaterialSkin), Description("Gets a collection containing the currently selected items in the ListBox.")]
         public List<object> SelectedItems => _selectedItems;
 
-        [Browsable(false), Category("Material Skin"), Description("Gets or sets the currently selected item in the ListBox.")]
+        [Browsable(false), Category(CategoryLabels.MaterialSkin), Description("Gets or sets the currently selected item in the ListBox.")]
         public MaterialListBoxItem SelectedItem
         {
             get => _selectedItem;
@@ -114,8 +114,8 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Browsable(false), Category("Material Skin"),
-         Description("Gets the currently selected Text in the ListBox.")]
+        [Browsable(false), Category(CategoryLabels.MaterialSkin),
+             Description("Gets the currently selected Text in the ListBox.")]
         public string SelectedText
         {
             get => _selectedText;
@@ -126,7 +126,7 @@ namespace MaterialSkin.Controls
             //}
         }
 
-        [Browsable(false), Category("Material Skin"), Description("Gets or sets the zero-based index of the currently selected item in a ListBox.")]
+        [Browsable(false), Category(CategoryLabels.MaterialSkin), Description("Gets or sets the zero-based index of the currently selected item in a ListBox.")]
         public int SelectedIndex
         {
             get => _selectedIndex;
@@ -138,7 +138,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Browsable(true), Category("Material Skin"), Description("Gets the value of the member property specified by the ValueMember property.")]
+        [Browsable(true), Category(CategoryLabels.MaterialSkin), Description("Gets the value of the member property specified by the ValueMember property.")]
         public object SelectedValue
         {
             get => _selectedValue;
@@ -149,7 +149,7 @@ namespace MaterialSkin.Controls
             //}
         }
 
-        [Category("Material Skin"), DefaultValue(false), Description("Gets or sets a value indicating whether the ListBox supports multiple rows.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Gets or sets a value indicating whether the ListBox supports multiple rows.")]
         public bool MultiSelect
         {
             get => _multiSelect;
@@ -169,7 +169,7 @@ namespace MaterialSkin.Controls
         [Browsable(false)]
         public int Count => _items.Count;
 
-        [Category("Material Skin"), DefaultValue(false), Description("Gets or sets a value indicating whether the vertical scroll bar be shown or not.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Gets or sets a value indicating whether the vertical scroll bar be shown or not.")]
         public bool ShowScrollBar
         {
             get => _showScrollBar;
@@ -181,7 +181,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), DefaultValue(true), Description("Gets or sets a value indicating whether the border shown or not.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true), Description("Gets or sets a value indicating whether the border shown or not.")]
         public bool ShowBorder
         {
             get => _showBorder;
@@ -192,17 +192,17 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), Description("Gets or sets backcolor used by the control.")]
+        [Category(CategoryLabels.MaterialSkin), Description("Gets or sets backcolor used by the control.")]
         public override Color BackColor { get; set; }
 
-        [Category("Material Skin"), Description("Gets or sets forecolor used by the control.")]
+        [Category(CategoryLabels.MaterialSkin), Description("Gets or sets forecolor used by the control.")]
         public override Color ForeColor { get; set; }
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string Text { get => base.Text; set => base.Text = value; }
 
-        [Category("Material Skin"), Description("Gets or sets border color used by the control.")]
+        [Category(CategoryLabels.MaterialSkin), Description("Gets or sets border color used by the control.")]
         public Color BorderColor
         {
             get => _borderColor;
@@ -213,7 +213,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), DefaultValue(ListBoxStyle.SingleLine)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(ListBoxStyle.SingleLine)]
         [Description("Gets or sets the control style.")]
         public ListBoxStyle Style
         {
@@ -228,7 +228,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), DefaultValue(MaterialItemDensity.Dense)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(MaterialItemDensity.Dense)]
         [Description("Gets or sets list density")]
         public MaterialItemDensity Density
         {
@@ -466,8 +466,8 @@ namespace MaterialSkin.Controls
                     NativeText.DrawTransparentText(
                     itemText,
                     _primaryFont,
-                    Enabled ? (i != SelectedIndex || UseAccentColor) ? 
-                    SkinManager.TextHighEmphasisColor : 
+                    Enabled ? (i != SelectedIndex || UseAccentColor) ?
+                    SkinManager.TextHighEmphasisColor :
                     SkinManager.ColorScheme.TextColor :
                     SkinManager.TextDisabledOrHintColor, // Disabled
                     primaryTextRect.Location,
@@ -478,8 +478,8 @@ namespace MaterialSkin.Controls
                         NativeText.DrawTransparentText(
                         itemSecondaryText,
                         _secondaryFont,
-                        Enabled ? (i != SelectedIndex || UseAccentColor) ? 
-                        SkinManager.TextDisabledOrHintColor : 
+                        Enabled ? (i != SelectedIndex || UseAccentColor) ?
+                        SkinManager.TextDisabledOrHintColor :
                         SkinManager.ColorScheme.TextColor.Darken(0.25f) :
                         SkinManager.TextDisabledOrHintColor, // Disabled
                         secondaryTextRect.Location,
@@ -491,8 +491,8 @@ namespace MaterialSkin.Controls
                         NativeText.DrawMultilineTransparentText(
                         itemSecondaryText,
                         _secondaryFont,
-                        Enabled ? (i != SelectedIndex || UseAccentColor) ? 
-                        SkinManager.TextDisabledOrHintColor : 
+                        Enabled ? (i != SelectedIndex || UseAccentColor) ?
+                        SkinManager.TextDisabledOrHintColor :
                         SkinManager.ColorScheme.TextColor.Darken(0.25f) :
                         SkinManager.TextDisabledOrHintColor, // Disabled
                         secondaryTextRect.Location,
@@ -555,9 +555,9 @@ namespace MaterialSkin.Controls
 
         public void RemoveItemAt(int index)
         {
-           if (index<= _selectedIndex)
+            if (index <= _selectedIndex)
             {
-                _selectedIndex -=1;
+                _selectedIndex -= 1;
                 update_selection();
             }
             _items.RemoveAt(index);
@@ -567,7 +567,7 @@ namespace MaterialSkin.Controls
 
         public void RemoveItem(MaterialListBoxItem item)
         {
-            if (_items.IndexOf(item)<= _selectedIndex)
+            if (_items.IndexOf(item) <= _selectedIndex)
             {
                 _selectedIndex -= 1;
                 update_selection();
@@ -645,19 +645,19 @@ namespace MaterialSkin.Controls
 
         #region Events
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         [Description("Occurs when selected index change.")]
         public event SelectedIndexChangedEventHandler SelectedIndexChanged;
 
         public delegate void SelectedIndexChangedEventHandler(object sender, MaterialListBoxItem selectedItem);
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         [Description("Occurs when selected value change.")]
         public event SelectedValueEventHandler SelectedValueChanged;
 
         public delegate void SelectedValueEventHandler(object sender, MaterialListBoxItem selectedItem);
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         [Description("Occurs when item is added or removed.")]
         public event EventHandler ItemsCountChanged;
 
@@ -737,7 +737,7 @@ namespace MaterialSkin.Controls
                     _scrollBar.Value = _scrollBar.Minimum;
                 else if (_scrollBar.Maximum < _scrollBar.Value + Height)
                 {
-                    if (e.Delta>0)
+                    if (e.Delta > 0)
                         _scrollBar.Value -= e.Delta / 2;
                     else
                     { } //Do nothing, maximum reached
@@ -804,7 +804,7 @@ namespace MaterialSkin.Controls
                 index = -1;
             }
 
-            if (index >= 0 && index<Items.Count)
+            if (index >= 0 && index < Items.Count)
             {
                 _hoveredItem = index;
             }
@@ -823,24 +823,16 @@ namespace MaterialSkin.Controls
         {
             base.OnHandleCreated(e);
             _scrollBar.Size = new Size(12, Height - (ShowBorder ? 2 : 0));
-            _scrollBar.Location = new Point( Width - (_scrollBar.Width + (ShowBorder ? 1 : 0)), ShowBorder ? 1 : 0);
+            _scrollBar.Location = new Point(Width - (_scrollBar.Width + (ShowBorder ? 1 : 0)), ShowBorder ? 1 : 0);
             InvalidateScroll(this, e);
         }
 
-        public const int WM_SETCURSOR = 0x0020;
-        public const int IDC_HAND = 32649;
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr LoadCursor(IntPtr hInstance, int lpCursorName);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern IntPtr SetCursor(IntPtr hCursor);
 
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == WM_SETCURSOR)
+            if (m.Msg == NativeWin.WM_SETCURSOR)
             {
-                SetCursor(LoadCursor(IntPtr.Zero, IDC_HAND));
+                NativeWin.SetCursor(NativeWin.LoadCursor(IntPtr.Zero, NativeWin.IDC_HAND));
                 m.Result = IntPtr.Zero;
                 return;
             }

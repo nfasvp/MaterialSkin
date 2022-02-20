@@ -32,18 +32,18 @@
             }
         }
 
-        [Category("Material Skin"),
-        DefaultValue(false)]
+        [Category(CategoryLabels.MaterialSkin),
+            DefaultValue(false)]
         public bool HighEmphasis { get; set; }
 
-        [Category("Material Skin"),
-        DefaultValue(false)]
+        [Category(CategoryLabels.MaterialSkin),
+            DefaultValue(false)]
         public bool UseAccent { get; set; }
 
         private MaterialSkinManager.fontType _fontType = MaterialSkinManager.fontType.Body1;
 
-        [Category("Material Skin"),
-        DefaultValue(typeof(MaterialSkinManager.fontType), "Body1")]
+        [Category(CategoryLabels.MaterialSkin),
+            DefaultValue(typeof(MaterialSkinManager.fontType), "Body1")]
         public MaterialSkinManager.fontType FontType
         {
             get

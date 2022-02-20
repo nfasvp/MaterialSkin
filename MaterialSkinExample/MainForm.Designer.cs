@@ -1183,7 +1183,7 @@ namespace MaterialSkinExample
             "hi"});
             this.materialComboBox6.Location = new System.Drawing.Point(463, 407);
             this.materialComboBox6.MaxDropDownItems = 4;
-            this.materialComboBox6.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox6.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialComboBox6.Name = "materialComboBox6";
             this.materialComboBox6.Size = new System.Drawing.Size(190, 49);
             this.materialComboBox6.StartIndex = 0;
@@ -1209,7 +1209,7 @@ namespace MaterialSkinExample
             "Hello There, I hope you\'ll have a wonderfull day"});
             this.materialComboBox2.Location = new System.Drawing.Point(463, 462);
             this.materialComboBox2.MaxDropDownItems = 4;
-            this.materialComboBox2.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox2.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialComboBox2.Name = "materialComboBox2";
             this.materialComboBox2.Size = new System.Drawing.Size(435, 49);
             this.materialComboBox2.StartIndex = 0;
@@ -1303,7 +1303,7 @@ namespace MaterialSkinExample
             "down!"});
             this.materialComboBox5.Location = new System.Drawing.Point(463, 352);
             this.materialComboBox5.MaxDropDownItems = 4;
-            this.materialComboBox5.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox5.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialComboBox5.Name = "materialComboBox5";
             this.materialComboBox5.Size = new System.Drawing.Size(190, 49);
             this.materialComboBox5.StartIndex = 0;
@@ -1398,7 +1398,7 @@ namespace MaterialSkinExample
             "down!"});
             this.materialComboBox4.Location = new System.Drawing.Point(258, 407);
             this.materialComboBox4.MaxDropDownItems = 4;
-            this.materialComboBox4.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox4.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialComboBox4.Name = "materialComboBox4";
             this.materialComboBox4.Size = new System.Drawing.Size(190, 49);
             this.materialComboBox4.StartIndex = 0;
@@ -1490,7 +1490,7 @@ namespace MaterialSkinExample
             "Long item that won\'t fit here"});
             this.materialComboBox1.Location = new System.Drawing.Point(258, 352);
             this.materialComboBox1.MaxDropDownItems = 4;
-            this.materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox1.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialComboBox1.Name = "materialComboBox1";
             this.materialComboBox1.Size = new System.Drawing.Size(190, 49);
             this.materialComboBox1.StartIndex = 0;
@@ -1796,7 +1796,7 @@ namespace MaterialSkinExample
             this.materialMaskedTextBox1.Location = new System.Drawing.Point(528, 437);
             this.materialMaskedTextBox1.Mask = "+00-0-00-00-00-00";
             this.materialMaskedTextBox1.MaxLength = 32767;
-            this.materialMaskedTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialMaskedTextBox1.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialMaskedTextBox1.Name = "materialMaskedTextBox1";
             this.materialMaskedTextBox1.PasswordChar = '\0';
             this.materialMaskedTextBox1.PrefixSuffixText = null;
@@ -1908,7 +1908,7 @@ namespace MaterialSkinExample
             "Suffix"});
             this.materialComboBox7.Location = new System.Drawing.Point(729, 182);
             this.materialComboBox7.MaxDropDownItems = 4;
-            this.materialComboBox7.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox7.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialComboBox7.Name = "materialComboBox7";
             this.materialComboBox7.Size = new System.Drawing.Size(183, 49);
             this.materialComboBox7.StartIndex = 0;
@@ -1980,7 +1980,7 @@ namespace MaterialSkinExample
             this.materialTextBox21.LeadingIcon = null;
             this.materialTextBox21.Location = new System.Drawing.Point(528, 114);
             this.materialTextBox21.MaxLength = 32767;
-            this.materialTextBox21.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox21.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialTextBox21.Name = "materialTextBox21";
             this.materialTextBox21.PasswordChar = '\0';
             this.materialTextBox21.PrefixSuffixText = "$";
@@ -2012,7 +2012,7 @@ namespace MaterialSkinExample
             this.materialMultiLineTextBox21.Hint = "MaterialMultiLineTextBox2";
             this.materialMultiLineTextBox21.Location = new System.Drawing.Point(25, 385);
             this.materialMultiLineTextBox21.MaxLength = 2147483647;
-            this.materialMultiLineTextBox21.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialMultiLineTextBox21.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialMultiLineTextBox21.Name = "materialMultiLineTextBox21";
             this.materialMultiLineTextBox21.PasswordChar = '\0';
             this.materialMultiLineTextBox21.ReadOnly = false;
@@ -2039,7 +2039,7 @@ namespace MaterialSkinExample
             this.materialTextBox5.LeadingIcon = null;
             this.materialTextBox5.Location = new System.Drawing.Point(222, 170);
             this.materialTextBox5.MaxLength = 50;
-            this.materialTextBox5.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox5.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialTextBox5.Name = "materialTextBox5";
             this.materialTextBox5.Size = new System.Drawing.Size(209, 50);
             this.materialTextBox5.TabIndex = 69;
@@ -2058,7 +2058,7 @@ namespace MaterialSkinExample
             this.materialTextBox4.LeadingIcon = null;
             this.materialTextBox4.Location = new System.Drawing.Point(25, 170);
             this.materialTextBox4.MaxLength = 50;
-            this.materialTextBox4.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox4.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialTextBox4.Name = "materialTextBox4";
             this.materialTextBox4.Size = new System.Drawing.Size(191, 50);
             this.materialTextBox4.TabIndex = 68;
@@ -2076,7 +2076,7 @@ namespace MaterialSkinExample
             this.materialTextBox3.LeadingIcon = null;
             this.materialTextBox3.Location = new System.Drawing.Point(25, 338);
             this.materialTextBox3.MaxLength = 50;
-            this.materialTextBox3.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox3.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialTextBox3.Name = "materialTextBox3";
             this.materialTextBox3.Size = new System.Drawing.Size(406, 36);
             this.materialTextBox3.TabIndex = 67;
@@ -2134,7 +2134,7 @@ namespace MaterialSkinExample
             this.materialTextBox2.LeadingIcon = global::MaterialSkinExample.Properties.Resources.baseline_fingerprint_black_24dp;
             this.materialTextBox2.Location = new System.Drawing.Point(25, 282);
             this.materialTextBox2.MaxLength = 50;
-            this.materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox2.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialTextBox2.Name = "materialTextBox2";
             this.materialTextBox2.UseSystemPasswordChar = true;
             this.materialTextBox2.Size = new System.Drawing.Size(406, 50);
@@ -2153,7 +2153,7 @@ namespace MaterialSkinExample
             this.materialTextBox1.LeadingIcon = null;
             this.materialTextBox1.Location = new System.Drawing.Point(25, 114);
             this.materialTextBox1.MaxLength = 50;
-            this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialTextBox1.Name = "materialTextBox1";
             this.materialTextBox1.Size = new System.Drawing.Size(406, 50);
             this.materialTextBox1.TabIndex = 1;
@@ -2171,7 +2171,7 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField2.LeadingIcon = null;
             this.materialSingleLineTextField2.Location = new System.Drawing.Point(25, 226);
             this.materialSingleLineTextField2.MaxLength = 50;
-            this.materialSingleLineTextField2.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialSingleLineTextField2.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialSingleLineTextField2.Name = "materialSingleLineTextField2";
             this.materialSingleLineTextField2.Size = new System.Drawing.Size(406, 50);
             this.materialSingleLineTextField2.TabIndex = 2;
@@ -2236,7 +2236,7 @@ namespace MaterialSkinExample
             this.materialListView1.Location = new System.Drawing.Point(25, 149);
             this.materialListView1.MinimumSize = new System.Drawing.Size(200, 100);
             this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT_;
             this.materialListView1.Name = "materialListView1";
             this.materialListView1.OwnerDraw = true;
             this.materialListView1.Scrollable = false;

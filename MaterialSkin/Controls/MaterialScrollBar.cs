@@ -9,7 +9,7 @@ namespace MaterialSkin.Controls
     using System.Security;
     using System.Windows.Forms;
     using System.Runtime.InteropServices;
-    
+
     public enum MaterialScrollOrientation
     {
         Horizontal,
@@ -30,15 +30,13 @@ namespace MaterialSkin.Controls
 
         private bool useAccentColor;
 
-        [Category("Material Skin"), DefaultValue(false), DisplayName("Use Accent Color")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), DisplayName("Use Accent Color")]
         public bool UseAccentColor
         {
             get { return useAccentColor; }
             set { useAccentColor = value; Invalidate(); }
         }
 
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         internal const int SCROLLBAR_DEFAULT_SIZE = 10;
 
@@ -369,7 +367,7 @@ namespace MaterialSkin.Controls
                 ControlStyles.OptimizedDoubleBuffer |
                      ControlStyles.ResizeRedraw |
                      ControlStyles.Selectable |
-//                     ControlStyles.AllPaintingInWmPaint |
+                     //                     ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.SupportsTransparentBackColor |
                      ControlStyles.UserPaint, true);
 
@@ -406,14 +404,14 @@ namespace MaterialSkin.Controls
         [SecuritySafeCritical]
         public void BeginUpdate()
         {
-            SendMessage(Handle, WM_SETREDRAW, 0, 0);
+            NativeWin.SendMessage(Handle, WM_SETREDRAW, 0, 0);
             inUpdate = true;
         }
 
         [SecuritySafeCritical]
         public void EndUpdate()
         {
-            SendMessage(Handle, WM_SETREDRAW, 1, 0);
+            NativeWin.SendMessage(Handle, WM_SETREDRAW, 1, 0);
             inUpdate = false;
             SetupScrollBar();
             Refresh();

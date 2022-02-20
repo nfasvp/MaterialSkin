@@ -51,7 +51,7 @@ namespace MaterialSkin.Controls
 
         private bool _UseTallSize;
 
-        [Category("Material Skin"), DefaultValue(true), Description("Using a larger size enables the hint to always be visible")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true), Description("Using a larger size enables the hint to always be visible")]
         public bool UseTallSize
         {
             get { return _UseTallSize; }
@@ -65,7 +65,7 @@ namespace MaterialSkin.Controls
         }
 
         private bool _showAssistiveText;
-        [Category("Material Skin"), DefaultValue(false), Description("Assistive elements provide additional detail about text entered into text fields. Could be Helper text or Error message.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Assistive elements provide additional detail about text entered into text fields. Could be Helper text or Error message.")]
         public bool ShowAssistiveText
         {
             get { return _showAssistiveText; }
@@ -84,7 +84,7 @@ namespace MaterialSkin.Controls
 
         private string _helperText;
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true), Description("Helper text conveys additional guidance about the input field, such as how it will be used.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true), Description("Helper text conveys additional guidance about the input field, such as how it will be used.")]
         public string HelperText
         {
             get { return _helperText; }
@@ -97,7 +97,7 @@ namespace MaterialSkin.Controls
 
         private string _errorMessage;
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true), Description("When text input isn't accepted, an error message can display instructions on how to fix it. Error messages are displayed below the input line, replacing helper text until fixed.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true), Description("When text input isn't accepted, an error message can display instructions on how to fix it. Error messages are displayed below the input line, replacing helper text until fixed.")]
         public string ErrorMessage
         {
             get { return _errorMessage; }
@@ -108,7 +108,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true)]
         public string Hint
         {
             get { return baseTextBox.Hint; }
@@ -121,12 +121,12 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), DefaultValue(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true)]
         public bool UseAccent { get; set; }
 
         private Image _leadingIcon;
 
-        [Category("Material Skin"), Browsable(true), Localizable(false)]
+        [Category(CategoryLabels.MaterialSkin), Browsable(true), Localizable(false)]
         /// <summary>
         /// Gets or sets the leading Icon
         /// </summary>
@@ -144,7 +144,7 @@ namespace MaterialSkin.Controls
 
         private Image _trailingIcon;
 
-        [Category("Material Skin"), Browsable(true), Localizable(false)]
+        [Category(CategoryLabels.MaterialSkin), Browsable(true), Localizable(false)]
         /// <summary>
         /// Gets or sets the trailing Icon
         /// </summary>
@@ -168,7 +168,7 @@ namespace MaterialSkin.Controls
         }
 
         private PrefixSuffixTypes _prefixsuffix;
-        [Category("Material Skin"), DefaultValue(PrefixSuffixTypes.None), Description("Set Prefix/Suffix/None")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(PrefixSuffixTypes.None), Description("Set Prefix/Suffix/None")]
         public PrefixSuffixTypes PrefixSuffix
         {
             get { return _prefixsuffix; }
@@ -185,7 +185,7 @@ namespace MaterialSkin.Controls
         }
 
         private string _prefixsuffixText;
-        [Category("Material Skin"), DefaultValue(""), Localizable(true), Description("Set Prefix or Suffix text")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true), Description("Set Prefix or Suffix text")]
         public string PrefixSuffixText
         {
             get { return _prefixsuffixText; }
@@ -193,9 +193,9 @@ namespace MaterialSkin.Controls
             {
                 //if (_prefixsuffixText != value)
                 //{
-                    _prefixsuffixText = value;
-                    UpdateRects();
-                    Invalidate();
+                _prefixsuffixText = value;
+                UpdateRects();
+                Invalidate();
                 //}
             }
         }
@@ -228,28 +228,28 @@ namespace MaterialSkin.Controls
 
         public override string Text { get { return baseTextBox.Text; } set { baseTextBox.Text = value; UpdateRects(); } }
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         public HorizontalAlignment TextAlign { get { return baseTextBox.TextAlign; } set { baseTextBox.TextAlign = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public CharacterCasing CharacterCasing { get { return baseTextBox.CharacterCasing; } set { baseTextBox.CharacterCasing = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool HideSelection { get { return baseTextBox.HideSelection; } set { baseTextBox.HideSelection = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public int MaxLength { get { return baseTextBox.MaxLength; } set { baseTextBox.MaxLength = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public char PasswordChar { get { return baseTextBox.PasswordChar; } set { baseTextBox.PasswordChar = value; } }
 
-        [Category("Behavior")]
-        public bool ShortcutsEnabled 
-        { 
-            get 
-            { return baseTextBox.ShortcutsEnabled; } 
-            set 
-            { 
+        [Category(CategoryLabels.Behavior)]
+        public bool ShortcutsEnabled
+        {
+            get
+            { return baseTextBox.ShortcutsEnabled; }
+            set
+            {
                 baseTextBox.ShortcutsEnabled = value;
                 if (value == false)
                 {
@@ -264,13 +264,13 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool UseSystemPasswordChar { get { return baseTextBox.UseSystemPasswordChar; } set { baseTextBox.UseSystemPasswordChar = value; } }
 
         public new object Tag { get { return baseTextBox.Tag; } set { baseTextBox.Tag = value; } }
 
         private bool _readonly;
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool ReadOnly
         {
             get { return _readonly; }
@@ -287,7 +287,7 @@ namespace MaterialSkin.Controls
 
         private bool _animateReadOnly;
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Browsable(true)]
         public bool AnimateReadOnly
         {
@@ -301,7 +301,7 @@ namespace MaterialSkin.Controls
 
         private bool _leaveOnEnterKey;
 
-        [Category("Material Skin"), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed.")]
         public bool LeaveOnEnterKey
         {
             get => _leaveOnEnterKey;
@@ -340,11 +340,11 @@ namespace MaterialSkin.Controls
 
         #region "Events"
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Leading Icon is clicked")]
         public event EventHandler LeadingIconClick;
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Trailing Icon is clicked")]
         public event EventHandler TrailingIconClick;
 
@@ -472,7 +472,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        #if NETFRAMEWORK
+#if NETFRAMEWORK
         public new event EventHandler ContextMenuChanged
         {
             add
@@ -484,7 +484,7 @@ namespace MaterialSkin.Controls
                 baseTextBox.ContextMenuChanged -= value;
             }
         }
-        #endif
+#endif
 
         public new event EventHandler ContextMenuStripChanged
         {
@@ -1194,7 +1194,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-       public event EventHandler TextAlignChanged
+        public event EventHandler TextAlignChanged
         {
             add
             {
@@ -1267,7 +1267,7 @@ namespace MaterialSkin.Controls
         private const int ACTIVATION_INDICATOR_HEIGHT = 2;
         private const int HELPER_TEXT_HEIGHT = 16;
         private const int FONT_HEIGHT = 20;
-        
+
         private int HEIGHT = 48;
 
         private int LINE_Y;
@@ -1290,7 +1290,7 @@ namespace MaterialSkin.Controls
         {
             // Material Properties
             UseAccent = true;
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
 
@@ -1321,7 +1321,7 @@ namespace MaterialSkin.Controls
                 Font = base.Font,
                 ForeColor = SkinManager.TextHighEmphasisColor,
                 Multiline = false,
-                Location = new Point(LEFT_PADDING, HEIGHT/2- FONT_HEIGHT/2),
+                Location = new Point(LEFT_PADDING, HEIGHT / 2 - FONT_HEIGHT / 2),
                 Width = Width - (LEFT_PADDING + RIGHT_PADDING),
                 Height = FONT_HEIGHT
             };
@@ -1383,7 +1383,7 @@ namespace MaterialSkin.Controls
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             g.Clear(Parent.BackColor);
             SolidBrush backBrush = new SolidBrush(DrawHelper.BlendColor(Parent.BackColor, SkinManager.BackgroundAlternativeColor, SkinManager.BackgroundAlternativeColor.A));
-            
+
             //backColor
             g.FillRectangle(
                 !Enabled ? SkinManager.BackgroundDisabledBrush : // Disabled
@@ -1456,7 +1456,7 @@ namespace MaterialSkin.Controls
                     Rectangle prefixRect = new Rectangle(
                         _left_padding - _prefix_padding,
                         hasHint && UseTallSize ? (hintRect.Y + hintRect.Height) - 2 : ClientRectangle.Y,
-//                        NativeText.MeasureLogString(_prefixsuffixText, SkinManager.getLogFontByType(MaterialSkinManager.fontType.Subtitle1)).Width,
+                        //                        NativeText.MeasureLogString(_prefixsuffixText, SkinManager.getLogFontByType(MaterialSkinManager.fontType.Subtitle1)).Width,
                         _prefix_padding,
                         hasHint && UseTallSize ? LINE_Y - (hintRect.Y + hintRect.Height) : LINE_Y);
 
@@ -1477,7 +1477,7 @@ namespace MaterialSkin.Controls
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
                 {
                     Rectangle suffixRect = new Rectangle(
-                        Width - _right_padding ,
+                        Width - _right_padding,
                         hasHint && UseTallSize ? (hintRect.Y + hintRect.Height) - 2 : ClientRectangle.Y,
                         //NativeText.MeasureLogString(_prefixsuffixText, SkinManager.getLogFontByType(MaterialSkinManager.fontType.Subtitle1)).Width + PREFIX_SUFFIX_PADDING,
                         _suffix_padding,
@@ -1495,7 +1495,7 @@ namespace MaterialSkin.Controls
             }
 
             // Draw hint text
-            if(hasHint && UseTallSize && (isFocused || userTextPresent))
+            if (hasHint && UseTallSize && (isFocused || userTextPresent))
             {
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
                 {
@@ -1535,14 +1535,14 @@ namespace MaterialSkin.Controls
             }
 
             // Draw error message
-            if (_showAssistiveText && _errorState && ErrorMessage!=null)
+            if (_showAssistiveText && _errorState && ErrorMessage != null)
             {
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
                 {
                     NativeText.DrawTransparentText(
                     ErrorMessage,
                     SkinManager.getTextBoxFontBySize(hintTextSize),
-                    Enabled ? 
+                    Enabled ?
                     SkinManager.BackgroundHoverRedColor : // error state
                     SkinManager.TextDisabledOrHintColor, // Disabled
                     helperTextRect.Location,
@@ -1615,7 +1615,7 @@ namespace MaterialSkin.Controls
             else
             {
                 base.OnMouseLeave(e);
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 Invalidate();
             }
         }
@@ -1637,7 +1637,7 @@ namespace MaterialSkin.Controls
             base.OnCreateControl();
 
             // events
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
 
         }
 
@@ -1838,7 +1838,7 @@ namespace MaterialSkin.Controls
                 iconsErrorBrushes.Add("_trailingIcon", textureBrushRed);
             }
         }
-        
+
         #endregion
 
         private void UpdateHeight()
@@ -1870,7 +1870,7 @@ namespace MaterialSkin.Controls
             }
             else
                 _prefix_padding = 0;
-                
+
             if (_prefixsuffix == PrefixSuffixTypes.Suffix && _prefixsuffixText != null && _prefixsuffixText.Length > 0)
             {
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(CreateGraphics()))

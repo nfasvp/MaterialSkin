@@ -21,7 +21,7 @@
 
         private bool _autoSizeTable;
 
-        [Category("Appearance"), Browsable(true)]
+        [Category(CategoryLabels.Appearance), Browsable(true)]
         public bool AutoSizeTable
         {
             get
@@ -56,14 +56,14 @@
 
             // Fix for hovers, by default it doesn't redraw
             MouseLocation = new Point(-1, -1);
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
             MouseEnter += delegate
             {
                 MouseState = MouseState.HOVER;
             };
             MouseLeave += delegate
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 MouseLocation = new Point(-1, -1);
                 HoveredItem = null;
                 Invalidate();

@@ -25,7 +25,7 @@
 
         private bool _ripple;
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         public bool Ripple
         {
             get { return _ripple; }
@@ -224,7 +224,7 @@
 
             if (DesignMode) return;
 
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
 
             GotFocus += (sender, AddingNewEventArgs) =>
             {
@@ -258,7 +258,7 @@
             MouseLeave += (sender, args) =>
             {
                 MouseLocation = new Point(-1, -1);
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 //if (Ripple && hovered)
                 //{
                 //    _hoverAM.StartNewAnimation(AnimationDirection.Out, new object[] { Checked });

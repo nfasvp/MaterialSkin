@@ -24,7 +24,7 @@
 
         // icons
         private TextureBrush iconsBrushes;
-        
+
         /// <summary>
         /// Gets or sets the Depth
         /// </summary>
@@ -59,14 +59,14 @@
         [Browsable(false)]
         public Color NoAccentTextColor { get; set; }
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         public bool UseAccentColor
         {
             get { return useAccentColor; }
             set { useAccentColor = value; Invalidate(); }
         }
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         /// <summary>
         /// Gets or sets a value indicating whether HighEmphasis
         /// </summary>
@@ -77,7 +77,7 @@
         }
 
         [DefaultValue(true)]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Description("Draw Shadows around control")]
         public bool DrawShadows
         {
@@ -85,24 +85,24 @@
             set { drawShadows = value; Invalidate(); }
         }
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         public MaterialButtonType Type
         {
             get { return type; }
             set { type = value; preProcessIcons(); Invalidate(); }
         }
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         /// <summary>
         /// Gets or sets a value indicating button density
         /// </summary>
         public MaterialButtonDensity Density
         {
             get { return _density; }
-            set 
-            { 
+            set
+            {
                 _density = value;
-                if (_density== MaterialButtonDensity.Dense)
+                if (_density == MaterialButtonDensity.Dense)
                     Size = new Size(Size.Width, HEIGHTDENSE);
                 else
                     Size = new Size(Size.Width, HEIGHTDEFAULT);
@@ -119,7 +119,7 @@
         }
 
         public CharacterCasingEnum _cc;
-        [Category("Behavior"), DefaultValue(CharacterCasingEnum.Upper), Description("Change capitalization of Text property")]
+        [Category(CategoryLabels.Behavior), DefaultValue(CharacterCasingEnum.Upper), Description("Change capitalization of Text property")]
         public CharacterCasingEnum CharacterCasing
         {
             get => _cc;
@@ -200,7 +200,7 @@
         private MaterialButtonType type;
         private MaterialButtonDensity _density;
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         /// <summary>
         /// Gets or sets the Icon
         /// </summary>
@@ -325,7 +325,7 @@
 
             int newWidth, newHeight;
             //Resize icon if greater than ICON_SIZE
-            if (Icon.Width> ICON_SIZE || Icon.Height > ICON_SIZE)
+            if (Icon.Width > ICON_SIZE || Icon.Height > ICON_SIZE)
             {
                 //calculate aspect ratio
                 float aspect = Icon.Width / (float)Icon.Height;
@@ -399,7 +399,7 @@
             textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
             // Translate the brushes to the correct positions
-            var iconRect = new Rectangle(8, (Height/2 - ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
+            var iconRect = new Rectangle(8, (Height / 2 - ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
 
             textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
                                                 iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
@@ -534,7 +534,7 @@
 
             Color textColor = Enabled ? (HighEmphasis ? (Type == MaterialButtonType.Text || Type == MaterialButtonType.Outlined) ?
                 UseAccentColor ? SkinManager.ColorScheme.AccentColor : // Outline or Text and accent and emphasis
-                NoAccentTextColor == Color.Empty ? 
+                NoAccentTextColor == Color.Empty ?
                 SkinManager.ColorScheme.PrimaryColor :  // Outline or Text and emphasis
                 NoAccentTextColor : // User defined Outline or Text and emphasis
                 SkinManager.ColorScheme.TextColor : // Contained and Emphasis
@@ -607,7 +607,7 @@
                 s.Width += extra;
                 s.Height = HEIGHTDEFAULT;
             }
-            if (Icon != null && Text.Length==0 && s.Width < MINIMUMWIDTHICONONLY) s.Width = MINIMUMWIDTHICONONLY;
+            if (Icon != null && Text.Length == 0 && s.Width < MINIMUMWIDTHICONONLY) s.Width = MINIMUMWIDTHICONONLY;
             else if (s.Width < MINIMUMWIDTH) s.Width = MINIMUMWIDTH;
 
             return s;
@@ -627,7 +627,7 @@
                 return;
             }
 
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
             MouseEnter += (sender, args) =>
             {
                 MouseState = MouseState.HOVER;
@@ -636,7 +636,7 @@
             };
             MouseLeave += (sender, args) =>
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 _hoverAnimationManager.StartNewAnimation(AnimationDirection.Out);
                 Invalidate();
             };
@@ -664,7 +664,7 @@
             };
             LostFocus += (sender, args) =>
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 _focusAnimationManager.StartNewAnimation(AnimationDirection.Out);
                 Invalidate();
             };

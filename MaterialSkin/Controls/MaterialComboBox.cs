@@ -11,7 +11,7 @@
     public class MaterialComboBox : ComboBox, IMaterialControl
     {
         // For some reason, even when overriding the AutoSize property, it doesn't appear on the properties panel, so we have to create a new one.
-        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always), Category("Layout")]
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always), Category(CategoryLabels.Layout)]
         private bool _AutoResize;
 
         public bool AutoResize
@@ -36,7 +36,7 @@
 
         private bool _UseTallSize;
 
-        [Category("Material Skin"), DefaultValue(true), Description("Using a larger size enables the hint to always be visible")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true), Description("Using a taller size enables the hint to always be visible")]
         public bool UseTallSize
         {
             get { return _UseTallSize; }
@@ -48,12 +48,12 @@
             }
         }
 
-        [Category("Material Skin"), DefaultValue(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true)]
         public bool UseAccent { get; set; }
 
         private string _hint = string.Empty;
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true)]
         public string Hint
         {
             get { return _hint; }
@@ -120,12 +120,12 @@
             _animationManager.OnAnimationFinished += sender => _animationManager.SetProgress(0);
             DropDownClosed += (sender, args) =>
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 if (SelectedIndex < 0 && !Focused) _animationManager.StartNewAnimation(AnimationDirection.Out);
             };
             LostFocus += (sender, args) =>
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 if (SelectedIndex < 0) _animationManager.StartNewAnimation(AnimationDirection.Out);
             };
             DropDown += (sender, args) =>
@@ -144,7 +144,7 @@
             };
             MouseLeave += (sender, args) =>
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 Invalidate();
             };
         }
@@ -263,7 +263,7 @@
                     NativeText.DrawTransparentText(
                     Hint,
                     SkinManager.getTextBoxFontBySize(hintTextSize),
-                    Enabled ? DroppedDown || Focused ? 
+                    Enabled ? DroppedDown || Focused ?
                     SelectedColor : // Focus 
                     SkinManager.TextMediumEmphasisColor : // not focused
                     SkinManager.TextDisabledOrHintColor, // Disabled
@@ -293,7 +293,7 @@
             {
                 g.FillRectangle(SkinManager.BackgroundHoverBrush, e.Bounds);
             }
-            
+
             string Text = "";
             if (!string.IsNullOrWhiteSpace(DisplayMember))
             {
@@ -328,7 +328,7 @@
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
             MeasureItem += CustomMeasureItem;
             DrawItem += CustomDrawItem;
             DropDownStyle = ComboBoxStyle.DropDownList;

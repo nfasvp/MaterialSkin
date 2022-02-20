@@ -17,9 +17,6 @@
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
-
         private const int EM_SETCUEBANNER = 0x1501;
 
         private const char EmptyChar = (char)0;
@@ -30,20 +27,20 @@
 
         private string hint = string.Empty;
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true)]
         public string Hint
         {
             get { return hint; }
             set
             {
                 hint = value;
-                SendMessage(Handle, EM_SETCUEBANNER, (int)IntPtr.Zero, Hint);
+                NativeWin.SendMessage(Handle, EM_SETCUEBANNER, (int)IntPtr.Zero, Hint);
             }
         }
 
         private bool _leaveOnEnterKey;
 
-        [Category("Material Skin"), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed. To add enter in text, the user must press CTRL+Enter")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed. To add enter in text, the user must press CTRL+Enter")]
         public bool LeaveOnEnterKey
         {
             get => _leaveOnEnterKey;

@@ -85,7 +85,7 @@
             // RemoveFontMemResourceEx
             foreach (IntPtr handle in logicalFonts.Values)
             {
-                NativeTextRenderer.DeleteObject(handle);
+                NativeWin.DeleteObject(handle);
             }
         }
 
@@ -235,7 +235,7 @@
         public Brush CheckboxOffBrush => Theme == Themes.LIGHT ? CHECKBOX_OFF_LIGHT_BRUSH : CHECKBOX_OFF_DARK_BRUSH;
         public Color CheckBoxOffDisabledColor => Theme == Themes.LIGHT ? CHECKBOX_OFF_DISABLED_LIGHT : CHECKBOX_OFF_DISABLED_DARK;
         public Brush CheckBoxOffDisabledBrush => Theme == Themes.LIGHT ? CHECKBOX_OFF_DISABLED_LIGHT_BRUSH : CHECKBOX_OFF_DISABLED_DARK_BRUSH;
-        
+
         // Switch
         public Color SwitchOffColor => Theme == Themes.LIGHT ? CHECKBOX_OFF_DARK : CHECKBOX_OFF_LIGHT; // yes, I re-use the checkbox color, sue me
         public Color SwitchOffThumbColor => Theme == Themes.LIGHT ? SWITCH_OFF_THUMB_LIGHT : SWITCH_OFF_THUMB_DARK;
@@ -319,7 +319,7 @@
 
                 case fontType.Subtitle2:
                     return new Font(RobotoFontFamilies["Roboto_Medium"], 14f, FontStyle.Bold, GraphicsUnit.Pixel);
-                
+
                 case fontType.SubtleEmphasis:
                     return new Font(RobotoFontFamilies["Roboto"], 12f, FontStyle.Italic, GraphicsUnit.Pixel);
 
@@ -378,7 +378,7 @@
             Marshal.Copy(fontdata, 0, ptrFont, dataLength);
 
             // GDI Font
-            NativeTextRenderer.AddFontMemResourceEx(fontdata, dataLength, IntPtr.Zero, out _);
+            NativeWin.AddFontMemResourceEx(fontdata, dataLength, IntPtr.Zero, out _);
 
             // GDI+ Font
             privateFontCollection.AddMemoryFont(ptrFont, dataLength);
@@ -387,12 +387,12 @@
         private IntPtr createLogicalFont(string fontName, int size, NativeTextRenderer.logFontWeight weight, byte lfItalic = 0)
         {
             // Logical font:
-            NativeTextRenderer.LogFont lfont = new NativeTextRenderer.LogFont();
+            NativeWin.LogFont lfont = new NativeWin.LogFont();
             lfont.lfFaceName = fontName;
             lfont.lfHeight = -size;
             lfont.lfWeight = (int)weight;
             lfont.lfItalic = lfItalic;
-            return NativeTextRenderer.CreateFontIndirect(lfont);
+            return NativeWin.CreateFontIndirect(lfont);
         }
 
         // Dyanmic Themes

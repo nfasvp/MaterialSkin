@@ -16,7 +16,7 @@
 
         private bool _showIconsWhenHidden;
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         public bool ShowIconsWhenHidden
         {
             get
@@ -39,7 +39,7 @@
 
         private bool _isOpen;
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         public bool IsOpen
         {
             get
@@ -56,13 +56,13 @@
             }
         }
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         public bool AutoHide { get; set; }
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         public bool AutoShow { get; set; }
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         private bool _useColors;
 
         public bool UseColors
@@ -79,7 +79,7 @@
             }
         }
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         private bool _highlightWithAccent;
 
         public bool HighlightWithAccent
@@ -96,7 +96,7 @@
             }
         }
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         private bool _backgroundWithAccent;
 
         public bool BackgroundWithAccent
@@ -112,7 +112,7 @@
             }
         }
 
-        [Category("Drawer")]
+        [Category(CategoryLabels.Drawer)]
         public int IndicatorWidth { get; set; }
 
         [Browsable(false)]
@@ -151,7 +151,7 @@
 
         private MaterialTabControl _baseTabControl;
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public MaterialTabControl BaseTabControl
         {
             get { return _baseTabControl; }
@@ -302,7 +302,7 @@
         private List<Rectangle> _drawerItemRects;
         private List<GraphicsPath> _drawerItemPaths;
 
-        private const int TAB_HEADER_PADDING = 24;
+
         private const int BORDER_WIDTH = 7;
 
         private int drawerItemHeight;
@@ -392,7 +392,7 @@
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         protected override void InitLayout()
         {
-            drawerItemHeight = TAB_HEADER_PADDING * 2 - SkinManager.FORM_PADDING / 2;
+            drawerItemHeight = Globals.TAB_HEADER_PADDING * 2 - SkinManager.FORM_PADDING / 2;
             MinWidth = (int)(SkinManager.FORM_PADDING * 1.5 + drawerItemHeight);
             _showHideAnimManager.SetProgress(_isOpen ? 0 : 1);
             showHideAnimation();
@@ -653,18 +653,18 @@
             base.OnMouseUp(e);
             if (DesignMode)
                 return;
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if (DesignMode)
                 return;
-            
+
             if (e.Button == MouseButtons.Left && e.Y != _lastMouseY && (Location.Y < 0 || Height < (8 + drawerItemHeight) * _drawerItemRects.Count))
             {
                 int diff = e.Y - _lastMouseY;
-                if (diff > 0) 
+                if (diff > 0)
                 {
                     if (Location.Y < 0)
                     {
@@ -672,7 +672,7 @@
                         Height = Parent.Height + Math.Abs(Location.Y);
                     }
                 }
-                else 
+                else
                 {
                     if (Height < (8 + drawerItemHeight) * _drawerItemRects.Count)
                     {
@@ -682,12 +682,12 @@
                 }
                 //return;
             }
-            
+
             base.OnMouseMove(e);
 
             if (_drawerItemRects == null)
                 UpdateTabRects();
-                
+
             Cursor previousCursor = Cursor;
 
             if (e.Location.X + this.Location.X < BORDER_WIDTH)
@@ -716,7 +716,7 @@
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
-            if (AutoShow && _isOpen==false)
+            if (AutoShow && _isOpen == false)
             {
                 Show();
             }
@@ -766,7 +766,7 @@
             {
                 _drawerItemRects[i] = (new Rectangle(
                     (int)(SkinManager.FORM_PADDING * 0.75) - (ShowIconsWhenHidden ? Location.X : 0),
-                    (TAB_HEADER_PADDING * 2) * i + (int)(SkinManager.FORM_PADDING >> 1),
+            (Globals.TAB_HEADER_PADDING * 2) * i + (int)(SkinManager.FORM_PADDING >> 1),
                     (Width + (ShowIconsWhenHidden ? Location.X : 0)) - (int)(SkinManager.FORM_PADDING * 1.5) - 1,
                     drawerItemHeight));
 

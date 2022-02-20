@@ -26,14 +26,14 @@
 
         #region "Events"
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Action button is clicked")]
         public event EventHandler ActionButtonClick;
 
         #endregion
 
 
-        [Category("Material Skin"), DefaultValue(false), DisplayName("Use Accent Color")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), DisplayName("Use Accent Color")]
         public bool UseAccentColor
         {
             get { return _useAccentColor; }
@@ -44,7 +44,7 @@
         /// <summary>
         /// Get or Set SnackBar show duration in milliseconds
         /// </summary>
-        [Category("Material Skin"), DefaultValue(2000)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(2000)]
         public int Duration
         {
             get
@@ -61,7 +61,7 @@
         /// <summary>
         /// The Text which gets displayed as the Content
         /// </summary>
-        [Category("Material Skin"), DefaultValue("SnackBar text")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue("SnackBar text")]
         public new String Text
         {
             get
@@ -77,7 +77,7 @@
         }
 
         private bool _showActionButton;
-        [Category("Material Skin"), DefaultValue(false), DisplayName("Show Action Button")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), DisplayName("Show Action Button")]
         public bool ShowActionButton
         {
             get { return _showActionButton; }
@@ -88,7 +88,7 @@
         /// <summary>
         /// The Text which gets displayed as the Content
         /// </summary>
-        [Category("Material Skin"), DefaultValue("OK")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue("OK")]
         public String ActionButtonText
         {
             get
@@ -107,16 +107,6 @@
         /// </summary>
         //public ObservableCollection<MaterialButton> Buttons { get; set; }
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
 
         /// <summary>
         /// Constructer Setting up the Layout
@@ -140,7 +130,7 @@
 
             this.ShowActionButton = ShowActionButton;
 
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 6, 6));
+            Region = System.Drawing.Region.FromHrgn(NativeWin.CreateRoundRectRgn(0, 0, Width, Height, 6, 6));
 
             _AnimationManager = new AnimationManager();
             _AnimationManager.AnimationType = AnimationType.EaseOut;
@@ -223,7 +213,7 @@
             _actionButton.Visible = _showActionButton;
 
             Width = TextRenderer.MeasureText(_text, SkinManager.getFontByType(MaterialSkinManager.fontType.Body2)).Width + (2 * LEFT_RIGHT_PADDING) + _actionButton.Width + 48;
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 6, 6));
+            Region = System.Drawing.Region.FromHrgn(NativeWin.CreateRoundRectRgn(0, 0, Width, Height, 6, 6));
 
         }
 
@@ -234,7 +224,7 @@
             Close();
         }
 
-         protected override void OnResize(EventArgs e)
+        protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
             UpdateRects();
@@ -274,7 +264,7 @@
 
             e.Graphics.Clear(BackColor);
 
-            
+
             // Calc text Rect
             Rectangle textRect = new Rectangle(
                 LEFT_RIGHT_PADDING,
@@ -357,8 +347,8 @@
 
             base.WndProc(ref message);
         }
-        
-       public new void Show()
+
+        public new void Show()
         {
             if (Owner == null)
             {

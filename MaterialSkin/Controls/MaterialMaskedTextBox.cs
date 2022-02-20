@@ -39,7 +39,7 @@
 
         [Browsable(false)]
         public int SelectionLength { get { return baseTextBox.SelectionLength; } set { baseTextBox.SelectionLength = value; } }
-        
+
         [Browsable(false)]
         public int TextLength { get { return baseTextBox.TextLength; } }
 
@@ -51,7 +51,7 @@
 
         private bool _UseTallSize;
 
-        [Category("Material Skin"), DefaultValue(true), Description("Using a larger size enables the hint to always be visible")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true), Description("Using a larger size enables the hint to always be visible")]
         public bool UseTallSize
         {
             get { return _UseTallSize; }
@@ -65,7 +65,7 @@
         }
 
         private bool _showAssistiveText;
-        [Category("Material Skin"), DefaultValue(false), Description("Assistive elements provide additional detail about text entered into text fields. Could be Helper text or Error message.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Assistive elements provide additional detail about text entered into text fields. Could be Helper text or Error message.")]
         public bool ShowAssistiveText
         {
             get { return _showAssistiveText; }
@@ -84,7 +84,7 @@
 
         private string _helperText;
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true), Description("Helper text conveys additional guidance about the input field, such as how it will be used.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true), Description("Helper text conveys additional guidance about the input field, such as how it will be used.")]
         public string HelperText
         {
             get { return _helperText; }
@@ -97,7 +97,7 @@
 
         private string _errorMessage;
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true), Description("When text input isn't accepted, an error message can display instructions on how to fix it. Error messages are displayed below the input line, replacing helper text until fixed.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true), Description("When text input isn't accepted, an error message can display instructions on how to fix it. Error messages are displayed below the input line, replacing helper text until fixed.")]
         public string ErrorMessage
         {
             get { return _errorMessage; }
@@ -108,7 +108,7 @@
             }
         }
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true)]
         public string Hint
         {
             get { return baseTextBox.Hint; }
@@ -121,12 +121,12 @@
             }
         }
 
-        [Category("Material Skin"), DefaultValue(true)]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(true)]
         public bool UseAccent { get; set; }
 
         private Image _leadingIcon;
 
-        [Category("Material Skin"), Browsable(true), Localizable(false)]
+        [Category(CategoryLabels.MaterialSkin), Browsable(true), Localizable(false)]
         /// <summary>
         /// Gets or sets the leading Icon
         /// </summary>
@@ -144,7 +144,7 @@
 
         private Image _trailingIcon;
 
-        [Category("Material Skin"), Browsable(true), Localizable(false)]
+        [Category(CategoryLabels.MaterialSkin), Browsable(true), Localizable(false)]
         /// <summary>
         /// Gets or sets the trailing Icon
         /// </summary>
@@ -168,7 +168,7 @@
         }
 
         private PrefixSuffixTypes _prefixsuffix;
-        [Category("Material Skin"), DefaultValue(PrefixSuffixTypes.None), Description("Set Prefix/Suffix/None")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(PrefixSuffixTypes.None), Description("Set Prefix/Suffix/None")]
         public PrefixSuffixTypes PrefixSuffix
         {
             get { return _prefixsuffix; }
@@ -185,7 +185,7 @@
         }
 
         private string _prefixsuffixText;
-        [Category("Material Skin"), DefaultValue(""), Localizable(true), Description("Set Prefix or Suffix text")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(""), Localizable(true), Description("Set Prefix or Suffix text")]
         public string PrefixSuffixText
         {
             get { return _prefixsuffixText; }
@@ -193,9 +193,9 @@
             {
                 //if (_prefixsuffixText != value)
                 //{
-                    _prefixsuffixText = value;
-                    UpdateRects();
-                    Invalidate();
+                _prefixsuffixText = value;
+                UpdateRects();
+                Invalidate();
                 //}
             }
         }
@@ -226,61 +226,61 @@
 
         public override string Text { get { return baseTextBox.Text; } set { baseTextBox.Text = value; } }
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         public HorizontalAlignment TextAlign { get { return baseTextBox.TextAlign; } set { baseTextBox.TextAlign = value; } }
 
-        [Category("Appearance")]
+        [Category(CategoryLabels.Appearance)]
         public Char PromptChar { get { return baseTextBox.PromptChar; } set { baseTextBox.PromptChar = value; } }
 
-        //[Category("Behavior")]
+        //[Category(CategoryLabels.Behavior)]
         //public CharacterCasing CharacterCasing { get { return baseTextBox.CharacterCasing; } set { baseTextBox.CharacterCasing = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool HideSelection { get { return baseTextBox.HideSelection; } set { baseTextBox.HideSelection = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool AllowPromptAsInput { get { return baseTextBox.AllowPromptAsInput; } set { baseTextBox.AllowPromptAsInput = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool AsciiOnly { get { return baseTextBox.AsciiOnly; } set { baseTextBox.AsciiOnly = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool BeepOnError { get { return baseTextBox.BeepOnError; } set { baseTextBox.BeepOnError = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public MaskFormat CutCopyMaskFormat { get { return baseTextBox.CutCopyMaskFormat; } set { baseTextBox.CutCopyMaskFormat = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool HidePromptOnLeave { get { return baseTextBox.HidePromptOnLeave; } set { baseTextBox.HidePromptOnLeave = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public InsertKeyMode InsertKeyMode { get { return baseTextBox.InsertKeyMode; } set { baseTextBox.InsertKeyMode = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public string Mask { get { return baseTextBox.Mask; } set { baseTextBox.Mask = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public int MaxLength { get { return baseTextBox.MaxLength; } set { baseTextBox.MaxLength = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public char PasswordChar { get { return baseTextBox.PasswordChar; } set { baseTextBox.PasswordChar = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool RejectInputOnFirstFailure { get { return baseTextBox.RejectInputOnFirstFailure; } set { baseTextBox.RejectInputOnFirstFailure = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool ResetOnPrompt { get { return baseTextBox.ResetOnPrompt; } set { baseTextBox.ResetOnPrompt = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool ResetOnSpace { get { return baseTextBox.ResetOnSpace; } set { baseTextBox.ResetOnSpace = value; } }
 
-        [Category("Behavior")]
-        public bool ShortcutsEnabled 
-        { 
-            get 
-            { return baseTextBox.ShortcutsEnabled; } 
-            set 
-            { 
+        [Category(CategoryLabels.Behavior)]
+        public bool ShortcutsEnabled
+        {
+            get
+            { return baseTextBox.ShortcutsEnabled; }
+            set
+            {
                 baseTextBox.ShortcutsEnabled = value;
                 if (value == false)
                 {
@@ -295,13 +295,13 @@
             }
         }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool SkipLiterals { get { return baseTextBox.SkipLiterals; } set { baseTextBox.SkipLiterals = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public MaskFormat TextMaskFormat { get { return baseTextBox.TextMaskFormat; } set { baseTextBox.TextMaskFormat = value; } }
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool UseSystemPasswordChar { get { return baseTextBox.UseSystemPasswordChar; } set { baseTextBox.UseSystemPasswordChar = value; } }
 
         [Browsable(false)]
@@ -310,7 +310,7 @@
         public new object Tag { get { return baseTextBox.Tag; } set { baseTextBox.Tag = value; } }
 
         private bool _readonly;
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         public bool ReadOnly
         {
             get { return _readonly; }
@@ -327,7 +327,7 @@
 
         private bool _animateReadOnly;
 
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Browsable(true)]
         public bool AnimateReadOnly
         {
@@ -341,7 +341,7 @@
 
         private bool _leaveOnEnterKey;
 
-        [Category("Material Skin"), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed.")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), Description("Select next control which have TabStop property set to True when enter key is pressed.")]
         public bool LeaveOnEnterKey
         {
             get => _leaveOnEnterKey;
@@ -374,11 +374,11 @@
 
         #region "Events"
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Leading Icon is clicked")]
         public event EventHandler LeadingIconClick;
 
-        [Category("Action")]
+        [Category(CategoryLabels.Action)]
         [Description("Fires when Trailing Icon is clicked")]
         public event EventHandler TrailingIconClick;
 
@@ -506,7 +506,7 @@
             }
         }
 
-        #if NETFRAMEWORK
+#if NETFRAMEWORK
         public new event EventHandler ContextMenuChanged
         {
             add
@@ -518,7 +518,7 @@
                 baseTextBox.ContextMenuChanged -= value;
             }
         }
-        #endif
+#endif
 
         public new event EventHandler ContextMenuStripChanged
         {
@@ -916,7 +916,7 @@
             }
         }
 
-       public event MaskInputRejectedEventHandler MaskInputRejected
+        public event MaskInputRejectedEventHandler MaskInputRejected
         {
             add
             {
@@ -1264,7 +1264,7 @@
             }
         }
 
-       public event EventHandler TextAlignChanged
+        public event EventHandler TextAlignChanged
         {
             add
             {
@@ -1288,7 +1288,7 @@
             }
         }
 
-       public event TypeValidationEventHandler TypeValidationCompleted
+        public event TypeValidationEventHandler TypeValidationCompleted
         {
             add
             {
@@ -1351,7 +1351,7 @@
         private const int ACTIVATION_INDICATOR_HEIGHT = 2;
         private const int HELPER_TEXT_HEIGHT = 16;
         private const int FONT_HEIGHT = 20;
-        
+
         private int HEIGHT = 48;
 
         private int LINE_Y;
@@ -1374,7 +1374,7 @@
         {
             // Material Properties
             UseAccent = true;
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
 
@@ -1405,7 +1405,7 @@
                 Font = base.Font,
                 ForeColor = SkinManager.TextHighEmphasisColor,
                 Multiline = false,
-                Location = new Point(LEFT_PADDING, HEIGHT/2- FONT_HEIGHT/2),
+                Location = new Point(LEFT_PADDING, HEIGHT / 2 - FONT_HEIGHT / 2),
                 Width = Width - (LEFT_PADDING + RIGHT_PADDING),
                 Height = FONT_HEIGHT
             };
@@ -1442,7 +1442,7 @@
                 _animationManager.StartNewAnimation(AnimationDirection.Out);
                 UpdateRects();
             };
-            
+
             baseTextBox.TextChanged += new EventHandler(Redraw);
             baseTextBox.BackColorChanged += new EventHandler(Redraw);
 
@@ -1468,7 +1468,7 @@
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             g.Clear(Parent.BackColor);
             SolidBrush backBrush = new SolidBrush(DrawHelper.BlendColor(Parent.BackColor, SkinManager.BackgroundAlternativeColor, SkinManager.BackgroundAlternativeColor.A));
-            
+
             //backColor
             g.FillRectangle(
                 !Enabled ? SkinManager.BackgroundDisabledBrush : // Disabled
@@ -1561,7 +1561,7 @@
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
                 {
                     Rectangle suffixRect = new Rectangle(
-                        Width - _right_padding ,
+                        Width - _right_padding,
                         hasHint && UseTallSize ? (hintRect.Y + hintRect.Height) - 2 : ClientRectangle.Y,
                         _suffix_padding,
                         hasHint && UseTallSize ? LINE_Y - (hintRect.Y + hintRect.Height) : LINE_Y);
@@ -1618,14 +1618,14 @@
             }
 
             // Draw error message
-            if (_showAssistiveText && _errorState && ErrorMessage!=null)
+            if (_showAssistiveText && _errorState && ErrorMessage != null)
             {
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
                 {
                     NativeText.DrawTransparentText(
                     ErrorMessage,
                     SkinManager.getTextBoxFontBySize(hintTextSize),
-                    Enabled ? 
+                    Enabled ?
                     SkinManager.BackgroundHoverRedColor : // error state
                     SkinManager.TextDisabledOrHintColor, // Disabled
                     helperTextRect.Location,
@@ -1699,7 +1699,7 @@
             else
             {
                 base.OnMouseLeave(e);
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.OUT_;
                 Invalidate();
             }
         }
@@ -1721,7 +1721,7 @@
             base.OnCreateControl();
 
             // events
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.OUT_;
 
         }
 

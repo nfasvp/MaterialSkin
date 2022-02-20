@@ -39,6 +39,6 @@
         /// <summary>
         /// Defines the OUT
         /// </summary>
-        OUT
+        OUT_
     }
 }

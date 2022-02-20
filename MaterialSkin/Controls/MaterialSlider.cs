@@ -38,7 +38,7 @@ namespace MaterialSkin.Controls
 
         private int _value;
         [DefaultValue(50)]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Description("Define control value")]
         public int Value
         {
@@ -50,7 +50,7 @@ namespace MaterialSkin.Controls
                 else if (value > _rangeMax)
                     _value = _rangeMax;
                 else
-					_value = value;
+                    _value = value;
                 //_mouseX = _sliderRectangle.X + ((int)((double)_value / (double)(RangeMax - RangeMin) * (double)(_sliderRectangle.Width) - _thumbRadius / 2));
                 _mouseX = _sliderRectangle.X + ((int)((double)_value / (double)(RangeMax - RangeMin) * (double)(_sliderRectangle.Width - _thumbRadius)));
                 RecalcutlateIndicator();
@@ -59,7 +59,7 @@ namespace MaterialSkin.Controls
 
         private int _valueMax;
         [DefaultValue(0)]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Description("Define position indicator maximum value. Ignored when set to 0.")]
         public int ValueMax
         {
@@ -77,7 +77,7 @@ namespace MaterialSkin.Controls
 
         private int _rangeMax;
         [DefaultValue(100)]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Description("Define control range maximum value")]
         public int RangeMax
         {
@@ -93,7 +93,7 @@ namespace MaterialSkin.Controls
 
         private int _rangeMin;
         [DefaultValue(0)]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Description("Define control range minimum value")]
         public int RangeMin
         {
@@ -109,7 +109,7 @@ namespace MaterialSkin.Controls
 
         private string _text;
         [DefaultValue("MyData")]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Description("Set control text")]
         public override string Text
         {
@@ -124,7 +124,7 @@ namespace MaterialSkin.Controls
 
         private string _valueSuffix;
         [DefaultValue("")]
-        [Category("Material Skin")]
+        [Category(CategoryLabels.MaterialSkin)]
         [Description("Set control value suffix text")]
         public string ValueSuffix
         {
@@ -138,7 +138,7 @@ namespace MaterialSkin.Controls
 
         private Boolean _showText;
         [DefaultValue(true)]
-        [Category("Material Skin"), DisplayName("Show text")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Show text")]
         [Description("Show text")]
         public bool ShowText
         {
@@ -148,7 +148,7 @@ namespace MaterialSkin.Controls
 
         private Boolean _showValue;
         [DefaultValue(true)]
-        [Category("Material Skin"), DisplayName("Show value")]
+        [Category(CategoryLabels.MaterialSkin), DisplayName("Show value")]
         [Description("Show value")]
         public bool ShowValue
         {
@@ -157,7 +157,7 @@ namespace MaterialSkin.Controls
         }
 
         private bool _useAccentColor;
-        [Category("Material Skin"), DefaultValue(false), DisplayName("Use Accent Color")]
+        [Category(CategoryLabels.MaterialSkin), DefaultValue(false), DisplayName("Use Accent Color")]
         public bool UseAccentColor
         {
             get { return _useAccentColor; }
@@ -166,7 +166,7 @@ namespace MaterialSkin.Controls
 
         private MaterialSkinManager.fontType _fontType = MaterialSkinManager.fontType.Body1;
 
-        [Category("Material Skin"),
+        [Category(CategoryLabels.MaterialSkin),
         DefaultValue(typeof(MaterialSkinManager.fontType), "Body1")]
         public MaterialSkinManager.fontType FontType
         {
@@ -187,7 +187,7 @@ namespace MaterialSkin.Controls
 
         #region "Events"
 
-        [Category("Behavior")]
+        [Category(CategoryLabels.Behavior)]
         [Description("Occurs when value change.")]
         public delegate void ValueChanged(object sender, int newValue);
         public event ValueChanged onValueChanged;
@@ -258,7 +258,7 @@ namespace MaterialSkin.Controls
             if (_valueMax != 0 && (Value + e.Delta / -40) > _valueMax)
                 Value = _valueMax;
             else
-                Value += e.Delta/-40;
+                Value += e.Delta / -40;
             onValueChanged?.Invoke(this, _value);
         }
 
@@ -305,7 +305,7 @@ namespace MaterialSkin.Controls
             }
             else if (e.X < _sliderRectangle.X)// + (_thumbRadius / 2))
             {
-                _mouseX = _sliderRectangle.X ;
+                _mouseX = _sliderRectangle.X;
                 v = _rangeMin;
             }
             else if (e.X > _sliderRectangle.Right - _thumbRadius)// / 2)
@@ -336,20 +336,20 @@ namespace MaterialSkin.Controls
             using (NativeTextRenderer NativeText = new NativeTextRenderer(CreateGraphics()))
             {
                 textSize = NativeText.MeasureLogString(_showText ? Text : "", SkinManager.getLogFontByType(_fontType));
-                valueSize = NativeText.MeasureLogString(_showValue ? RangeMax.ToString() + _valueSuffix : "" , SkinManager.getLogFontByType(_fontType));
+                valueSize = NativeText.MeasureLogString(_showValue ? RangeMax.ToString() + _valueSuffix : "", SkinManager.getLogFontByType(_fontType));
             }
             _valueRectangle = new Rectangle(Width - valueSize.Width - _thumbRadiusHoverPressed / 4, 0, valueSize.Width + _thumbRadiusHoverPressed / 4, Height);
-            _textRectangle = new Rectangle(0, 0, textSize.Width + _thumbRadiusHoverPressed/4, Height);
-            _sliderRectangle = new Rectangle(_textRectangle.Right , 0, _valueRectangle.Left - _textRectangle.Right , _thumbRadius);
+            _textRectangle = new Rectangle(0, 0, textSize.Width + _thumbRadiusHoverPressed / 4, Height);
+            _sliderRectangle = new Rectangle(_textRectangle.Right, 0, _valueRectangle.Left - _textRectangle.Right, _thumbRadius);
             _mouseX = _sliderRectangle.X + ((int)((double)_value / (double)(_rangeMax - _rangeMin) * (double)(_sliderRectangle.Width) - _thumbRadius / 2));
             RecalcutlateIndicator();
         }
 
         private void RecalcutlateIndicator()
         {
-            _indicatorRectangle = new Rectangle(_mouseX, (Height - _thumbRadius) /2, _thumbRadius, _thumbRadius);
-            _indicatorRectangleNormal = new Rectangle(_indicatorRectangle.X, Height/2 - _thumbRadius/2, _thumbRadius, _thumbRadius);
-            _indicatorRectanglePressed = new Rectangle(_indicatorRectangle.X + _thumbRadius/2 - _thumbRadiusHoverPressed/2, Height / 2 - _thumbRadiusHoverPressed/2, _thumbRadiusHoverPressed, _thumbRadiusHoverPressed);
+            _indicatorRectangle = new Rectangle(_mouseX, (Height - _thumbRadius) / 2, _thumbRadius, _thumbRadius);
+            _indicatorRectangleNormal = new Rectangle(_indicatorRectangle.X, Height / 2 - _thumbRadius / 2, _thumbRadius, _thumbRadius);
+            _indicatorRectanglePressed = new Rectangle(_indicatorRectangle.X + _thumbRadius / 2 - _thumbRadiusHoverPressed / 2, Height / 2 - _thumbRadiusHoverPressed / 2, _thumbRadiusHoverPressed, _thumbRadiusHoverPressed);
             Invalidate();
         }
 
@@ -359,7 +359,7 @@ namespace MaterialSkin.Controls
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             g.Clear(Parent.BackColor);
-            
+
             Color _inactiveTrackColor;
             Color _accentColor;
             Brush _accentBrush;
@@ -390,7 +390,7 @@ namespace MaterialSkin.Controls
             //_disabledBrush = new SolidBrush(_disabledColor);
             //_thumbHoverColor = Color.FromArgb((int)(2.55 * 15), (Value == 0 ? Color.Gray : _accentColor));
             //_thumbPressedColor = Color.FromArgb((int)(2.55 * 30), (Value == 0 ? Color.Gray : _accentColor));            _thumbHoverColor = Color.FromArgb((int)(2.55 * 15), (Value == 0 ? Color.Gray : _accentColor));
-            _thumbHoverColor = Color.FromArgb((int)(2.55 * 15),  _accentColor);
+            _thumbHoverColor = Color.FromArgb((int)(2.55 * 15), _accentColor);
             _thumbPressedColor = Color.FromArgb((int)(2.55 * 30), _accentColor);
             //Pen LinePen = new Pen(_disabledColor, _inactiveTrack);
 
@@ -398,9 +398,9 @@ namespace MaterialSkin.Controls
             //g.DrawLine(LinePen, _indicatorSize / 2, Height / 2 + (Height - _indicatorSize) / 2, Width - _indicatorSize / 2, Height / 2 + (Height - _indicatorSize) / 2);
             //g.DrawLine(LinePen, _sliderRectangle.X + (_indicatorSize / 2), Height / 2 , _sliderRectangle.Right - (_indicatorSize / 2), Height / 2 );
 
-            GraphicsPath _inactiveTrackPath = DrawHelper.CreateRoundRect(_sliderRectangle.X + (_thumbRadius / 2), _sliderRectangle.Y + Height / 2 - _inactiveTrack/2, _sliderRectangle.Width - _thumbRadius, _inactiveTrack, 2);
+            GraphicsPath _inactiveTrackPath = DrawHelper.CreateRoundRect(_sliderRectangle.X + (_thumbRadius / 2), _sliderRectangle.Y + Height / 2 - _inactiveTrack / 2, _sliderRectangle.Width - _thumbRadius, _inactiveTrack, 2);
             //g.FillPath(_disabledBrush, _inactiveTrackPath);
-                GraphicsPath _activeTrackPath = DrawHelper.CreateRoundRect(_sliderRectangle.X + (_thumbRadius / 2), _sliderRectangle.Y + Height / 2 - _activeTrack / 2, _indicatorRectangleNormal.X - _sliderRectangle.X, _activeTrack, 2);
+            GraphicsPath _activeTrackPath = DrawHelper.CreateRoundRect(_sliderRectangle.X + (_thumbRadius / 2), _sliderRectangle.Y + Height / 2 - _activeTrack / 2, _indicatorRectangleNormal.X - _sliderRectangle.X, _activeTrack, 2);
 
             if (Enabled)
             {
@@ -451,16 +451,16 @@ namespace MaterialSkin.Controls
                     _textRectangle.Location,
                     _textRectangle.Size,
                     NativeTextRenderer.TextAlignFlags.Left | NativeTextRenderer.TextAlignFlags.Middle);
- 
-                if (_showValue==true)
-                // Draw value
-                NativeText.DrawTransparentText(
-                    Value.ToString()+ValueSuffix,
-                    SkinManager.getLogFontByType(_fontType),
-                    Enabled ? SkinManager.TextHighEmphasisColor : SkinManager.TextDisabledOrHintColor,
-                    _valueRectangle.Location,
-                    _valueRectangle.Size,
-                    NativeTextRenderer.TextAlignFlags.Right | NativeTextRenderer.TextAlignFlags.Middle);
+
+                if (_showValue == true)
+                    // Draw value
+                    NativeText.DrawTransparentText(
+                        Value.ToString() + ValueSuffix,
+                        SkinManager.getLogFontByType(_fontType),
+                        Enabled ? SkinManager.TextHighEmphasisColor : SkinManager.TextDisabledOrHintColor,
+                        _valueRectangle.Location,
+                        _valueRectangle.Size,
+                        NativeTextRenderer.TextAlignFlags.Right | NativeTextRenderer.TextAlignFlags.Middle);
             }
 
         }
