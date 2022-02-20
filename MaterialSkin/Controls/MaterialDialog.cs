@@ -35,8 +35,10 @@
         /// <summary>
         /// Constructer Setting up the Layout
         /// </summary>
-        public MaterialDialog(Form ParentForm, string Title, string Text, string ValidationButtonText, bool ShowCancelButton, string CancelButtonText, bool UseAccentColor)
+        public MaterialDialog(ContainerControl ParentForm, string Title, string Text, string ValidationButtonText, bool ShowCancelButton, string CancelButtonText, bool UseAccentColor)
         {
+            Point locationFromScreen = ParentForm.PointToScreen(Point.Empty);
+
             _formOverlay = new Form
             {
                 BackColor = Color.Black,
@@ -49,9 +51,10 @@
                 FormBorderStyle = FormBorderStyle.None,
                 Size = new Size(ParentForm.Width, ParentForm.Height),
                 ShowInTaskbar = false,
-                Owner = ParentForm,
+                Owner = null,
+                Tag = ParentForm,
                 Visible = true,
-                Location = new Point(ParentForm.Location.X, ParentForm.Location.Y),
+                Location = locationFromScreen,
                 Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom,
             };
 
@@ -135,31 +138,31 @@
             //return materialDialogResult;
         }
 
-        public MaterialDialog(Form ParentForm) : this(ParentForm, "Title", "Dialog box", "OK", false, "Cancel", false)
+        public MaterialDialog(ContainerControl ParentForm) : this(ParentForm, "Title", "Dialog box", "OK", false, "Cancel", false)
         {
         }
 
-        public MaterialDialog(Form ParentForm, string Text) : this(ParentForm, "Title", Text, "OK", false, "Cancel", false)
+        public MaterialDialog(ContainerControl ParentForm, string Text) : this(ParentForm, "Title", Text, "OK", false, "Cancel", false)
         {
         }
 
-        public MaterialDialog(Form ParentForm, string Title, string Text) : this(ParentForm, Title, Text, "OK", false, "Cancel", false)
+        public MaterialDialog(ContainerControl ParentForm, string Title, string Text) : this(ParentForm, Title, Text, "OK", false, "Cancel", false)
         {
         }
 
-        public MaterialDialog(Form ParentForm, string Title, string Text, string ValidationButtonText) : this(ParentForm, Title, Text, ValidationButtonText, false, "Cancel", false)
+        public MaterialDialog(ContainerControl ParentForm, string Title, string Text, string ValidationButtonText) : this(ParentForm, Title, Text, ValidationButtonText, false, "Cancel", false)
         {
         }
 
-        public MaterialDialog(Form ParentForm, string Title, string Text, bool ShowCancelButton) : this(ParentForm, Title, Text, "OK", ShowCancelButton, "Cancel", false)
+        public MaterialDialog(ContainerControl ParentForm, string Title, string Text, bool ShowCancelButton) : this(ParentForm, Title, Text, "OK", ShowCancelButton, "Cancel", false)
         {
         }
 
-        public MaterialDialog(Form ParentForm, string Title, string Text, bool ShowCancelButton, string CancelButtonText) : this(ParentForm, Title, Text, "OK", ShowCancelButton, CancelButtonText, false)
+        public MaterialDialog(ContainerControl ParentForm, string Title, string Text, bool ShowCancelButton, string CancelButtonText) : this(ParentForm, Title, Text, "OK", ShowCancelButton, CancelButtonText, false)
         {
         }
 
-        public MaterialDialog(Form ParentForm, string Title, string Text, string ValidationButtonText, bool ShowCancelButton, string CancelButtonText) : this(ParentForm, Title, Text, ValidationButtonText, ShowCancelButton, CancelButtonText, false)
+        public MaterialDialog(ContainerControl ParentForm, string Title, string Text, string ValidationButtonText, bool ShowCancelButton, string CancelButtonText) : this(ParentForm, Title, Text, ValidationButtonText, ShowCancelButton, CancelButtonText, false)
         {
         }
 
@@ -171,7 +174,7 @@
         {
             base.OnLoad(e);
 
-            Location = new Point(Convert.ToInt32(Owner.Location.X + (Owner.Width / 2) - (Width / 2)), Convert.ToInt32(Owner.Location.Y + (Owner.Height / 2) - (Height / 2)));
+            Location = new Point(Convert.ToInt32(_formOverlay.Location.X + (_formOverlay.Width / 2) - (Width / 2)), Convert.ToInt32(_formOverlay.Location.Y + (_formOverlay.Height / 2) - (Height / 2)));
             _AnimationManager.StartNewAnimation(AnimationDirection.In);
         }
 

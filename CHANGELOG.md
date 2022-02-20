@@ -7,6 +7,26 @@ This repo is a fork obtained from https://github.com/leocb/MaterialSkin.git
 
 
 
+build 2.3.1.4 [2022-02-20] 
+-------------------------
+  - Enhancements:
+    - Added support for "UserControl" Containers
+      - Previous versions only supported placing controls like MaterialDialog if the Parent Container was of a type that inherits from Winform (Form class), like MaterialForm or plain Winform. Adding MaterialDialog control to a custom UserControl would generate a runtime exception because MaterialDialog._formOverlay was expecting an "Onwer" of type "Form" which is not the case when using parent containers like UserControls.
+      - Changed class "MaterialDialog" to expect a Parent-container of type "ContainerControl", Form and UserControl classes inherit from ContainControl class.
+      - Affected files:
+        - MaterialDialog.cs
+        - MaterialSkinManager.cs
+
+    - Improved design-mode experience of MaterialDrawer when combined with MaterialTabControl object. Now, during design-time, it's possible to view the drawer and the design impact on it when drawer's and tabcontrol's properties are changed by the user.
+
+    - Improved performance of MaterialDrawer during initialization
+      - Reduced the number of "Redraws" (Pain events) while the MaterialDrawer control is being initialized by its container.
+        - Previously, during MaterialDrawer's initialization, every property set done by the container that would impact drawer's UI would generate a redraw event (paint event).
+        - Now, MaterialDrawer control checks if its container has finish the initialization and if not ignores the redraw. When container invokes control's "InitLayout" method, meaning "end of control's initialization phase, future propertities changes will invoke a redraw action.
+
+
+
+
 build 2.3.1.3 [2022-02-20] 
 -------------------------
   - Code Cleansing:

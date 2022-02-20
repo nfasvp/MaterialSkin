@@ -315,8 +315,9 @@ namespace MaterialSkin.Controls
             // Drawer
             Shown += (sender, e) =>
             {
-                if (DesignMode || IsDisposed)
-                    return;
+                //Disabled to improve design mode experience
+                //if (DesignMode || IsDisposed)
+                //  return;
                 AddDrawerOverlayForm();
             };
         }
