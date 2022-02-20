@@ -14,7 +14,11 @@
     {
         private static MaterialSkinManager _instance;
 
-        private readonly List<MaterialForm> _formsToManage = new List<MaterialForm>();
+
+        /// <summary>
+        /// List of Native-Forms, Material-Forms, Native-UserControls
+        /// </summary>
+        private readonly List<ContainerControl> _formsToManage = new List<ContainerControl>();
 
         public delegate void SkinManagerEventHandler(object sender);
 
@@ -29,7 +33,7 @@
 
         public static MaterialSkinManager Instance => _instance ?? (_instance = new MaterialSkinManager());
 
-        public int FORM_PADDING = 14;
+        public int FORM_PADDING = 12;
 
         // Constructor
         private MaterialSkinManager()
@@ -394,6 +398,51 @@
             lfont.lfItalic = lfItalic;
             return NativeWin.CreateFontIndirect(lfont);
         }
+
+
+
+        /// <summary>
+        /// Method added to suport "native" User Controls that contain MaterialSkin controls. Native User Controls must have "BackColor" property
+        /// </summary>
+        /// <param name="nativeUserControl"></param>
+        public void AddFormToManage(UserControl nativeUserControl)
+        {
+            if (false == nativeUserControl.HasProperty("BackColor"))
+            {
+                return;
+            }
+
+            _formsToManage.Add(nativeUserControl);
+            UpdateBackgrounds();
+
+            // Set background on newly added controls
+            nativeUserControl.ControlAdded += (sender, e) =>
+            {
+                UpdateControlBackColor(e.Control, BackdropColor);
+            };
+        }
+
+        /// <summary>
+        /// Method added to suport "native" Forms that contain MaterialSkin controls. NativeForm must have "BackColor" property
+        /// </summary>
+        /// <param name="nativeForm"></param>
+        public void AddFormToManage(Form nativeForm)
+        {
+            if (false == nativeForm.HasProperty("BackColor"))
+            {
+                return;
+            }
+
+            _formsToManage.Add(nativeForm);
+            UpdateBackgrounds();
+
+            // Set background on newly added controls
+            nativeForm.ControlAdded += (sender, e) =>
+            {
+                UpdateControlBackColor(e.Control, BackdropColor);
+            };
+        }
+
 
         // Dyanmic Themes
         public void AddFormToManage(MaterialForm materialForm)

@@ -28,6 +28,10 @@
                 if (_showIconsWhenHidden != value)
                 {
                     _showIconsWhenHidden = value;
+
+                    // control is still under initialization, ignore redraw
+                    if (!_controlAddedToContainer) return;
+
                     UpdateTabRects();
                     preProcessIcons();
                     showHideAnimation();
@@ -49,6 +53,10 @@
             set
             {
                 _isOpen = value;
+
+                // control is still under initialization, ignore UI change
+                if (!_controlAddedToContainer) return;
+
                 if (value)
                     Show();
                 else
@@ -74,6 +82,10 @@
             set
             {
                 _useColors = value;
+
+                // control is still under initialization, ignore redraw
+                if (!_controlAddedToContainer) return;
+
                 preProcessIcons();
                 Invalidate();
             }
@@ -91,6 +103,10 @@
             set
             {
                 _highlightWithAccent = value;
+
+                // control is still under initialization, ignore redraw
+                if (!_controlAddedToContainer) return;
+
                 preProcessIcons();
                 Invalidate();
             }
@@ -108,6 +124,10 @@
             set
             {
                 _backgroundWithAccent = value;
+
+                // control is still under initialization, ignore redraw
+                if (!_controlAddedToContainer) return;
+
                 Invalidate();
             }
         }
@@ -184,6 +204,10 @@
                 {
                     Invalidate();
                 };
+
+                // control is still under initialization, ignore redraw
+                if (!_controlAddedToContainer) return;
+                Invalidate();
             }
         }
 
@@ -311,6 +335,13 @@
         private int _lastMouseY;
         private int _lastLocationY;
 
+        /// <summary>
+        /// defines if the MaterialDrawer has been added to container's collection of controls
+        /// Used to decide when changes on MaterialDrawer's properties should trigger a Paint event. 
+        /// The goal is to reduce the number of "Redraws" (Paint event) while the control is being initialized by its container.
+        /// </summary>
+        private bool _controlAddedToContainer = false;
+
         public MaterialDrawer()
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -389,9 +420,15 @@
             }
         }
 
+        /// <summary>
+        /// This method gets called when container adds this object to its collections of controls, ie, ContainerObject.Add({TLMaterialDrawer object})
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         protected override void InitLayout()
         {
+            // MaterialDrawer has been added to its Container. From now on trigger "Paint" event if properties are changed
+            _controlAddedToContainer = true;
+
             drawerItemHeight = Globals.TAB_HEADER_PADDING * 2 - SkinManager.FORM_PADDING / 2;
             MinWidth = (int)(SkinManager.FORM_PADDING * 1.5 + drawerItemHeight);
             _showHideAnimManager.SetProgress(_isOpen ? 0 : 1);
